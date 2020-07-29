@@ -2,37 +2,48 @@
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.mainTitle {
+  font-size: x-large;
+  font-family: 'Montserrat', sans-serif;
+  margin-bottom: -1%;
+  margin-top: -2%;
+  color: rgb(101, 123, 223);
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.mainTitle a {
+  text-decoration: none;
+}
+.mainTitle a:visited {
+  text-decoration: none;
+  color: rgb(243, 187, 138)
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.navBar {
+  overflow: hidden;
+  background-color: rgb(255, 255, 255);
+  width: 100%;
+  text-decoration: none;
+  text-align: center;
+  border-bottom: solid;
+  border-top: solid;
+  border-width: 1px;
+  border-color: rgb(136, 136, 136);
+}
+
+.navBar ul {
+  justify-content: space-evenly;
+  font-size: large;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  width: 100%;
+  margin: auto;
+  padding: 1%;
+  padding-bottom: 1%;
+  list-style-type: none;
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
 }
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.navBar a {
+  text-decoration: none;
+  color: black
 }

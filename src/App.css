@@ -19,29 +19,43 @@
 }
 
 .navBar {
-  overflow: hidden;
   background-color: rgb(255, 255, 255);
   width: 100%;
-  text-decoration: none;
-  text-align: center;
+  text-align: right;
   border-bottom: solid;
-  border-top: solid;
   border-width: 1px;
-  border-color: rgb(136, 136, 136);
+  border-style: outset;
+}
+
+.navBar li {
+  display: inline;
+  color: white;
+  text-align: center;
+  padding-left: 1%;
+  padding-right: 1%;
+  text-decoration: none;
+}
+
+.navBar li:first-of-type {
+  float: left;
+  font-size: large;
 }
 
 .navBar ul {
-  justify-content: space-evenly;
-  font-size: large;
-  display: flex;
-  width: 100%;
-  margin: auto;
-  padding: 1%;
-  padding-bottom: 1%;
   list-style-type: none;
-  text-decoration: none;
+  margin: 0;
+  padding: 0;
+  text-align: right;
+  overflow: hidden;
+  padding-bottom: 1%;
+  margin-top: 1%;
   font-family: 'Montserrat', sans-serif;
 }
+
+.navBar a:hover {
+  color: rgb(167, 167, 167)
+}
+
 
 .navBar a {
   text-decoration: none;

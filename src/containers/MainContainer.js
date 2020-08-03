@@ -5,7 +5,7 @@ export default class MainContainer extends Component {
     render() {
         return (
             <div>
-                <About />
+                {/* <About /> */}
             </div>
         )
     }

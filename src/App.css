@@ -39,6 +39,7 @@
 .navBar li:first-of-type {
   float: left;
   font-size: large;
+  padding-left: 2%;
 }
 
 .navBar ul {
@@ -48,6 +49,7 @@
   text-align: right;
   overflow: hidden;
   padding-bottom: 1%;
+  padding-right: 1%;
   margin-top: 1%;
   font-family: 'Montserrat', sans-serif;
 }

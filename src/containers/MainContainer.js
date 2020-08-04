@@ -3,6 +3,8 @@ import About from '../components/About'
 import Beverages from '../components/Beverages'
 import { Link, Route, Switch } from 'react-router-dom'
 import Login from './Login'
+import Signup from './Signup'
+import NavBar from '../components/NavBar'
 
 export default class MainContainer extends Component {
 
@@ -51,8 +53,13 @@ export default class MainContainer extends Component {
     render() {
         return (
             <div>
-                <Beverages />
-                {/* <About /> */}
+            <NavBar user={this.state.currentUser} setUser={this.setUser} logOut={this.logOut}/>
+                <Switch>
+                    <Route exact path='/' />
+                    <Route exact path='/login' render={(routerProps) => <Login setUser={this.setUser} {...routerProps}/>} />
+                    <Route exact path='/signup' render={(routerProps) => <Signup setUser={this.setUser} {...routerProps} />} />
+                    <Route exact path='/beverages' render={(routerProps) => <Beverages {...routerProps} />}/>
+                </Switch>
             </div>
         )
     }

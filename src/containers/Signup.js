@@ -15,7 +15,7 @@ export default class Signup extends Component {
       handleSubmit = (e) => {
         e.preventDefault()
   
-        if(this.state.password === this.state.passwordConfirmation){
+        
           fetch(`http://localhost:3000/signup`,{
             method: "POST",
             headers: {
@@ -23,7 +23,7 @@ export default class Signup extends Component {
               'Accept': "application/json"
             },
             body: JSON.stringify({
-              username: this.state.username,
+              name: this.state.username,
             })
           })
             .then(res => res.json())
@@ -37,13 +37,9 @@ export default class Signup extends Component {
                 // this.props.history.push('/')
               }
             })
-        } else {
-          alert('Please Try Again.')
-        }
-      }
-
+        } 
       
-  
+
 
     render() {
         return (

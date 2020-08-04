@@ -21,7 +21,7 @@ export default class Login extends Component {
             "Content-Type": "application/json",
             'Accept': "application/json"
           },
-          body: JSON.stringify(this.state)
+          body: JSON.stringify(this.state.username)
         })
         .then(res => res.json())
         .then(response => {
@@ -30,7 +30,8 @@ export default class Login extends Component {
           } else {
             this.props.setUser(response.user)
             localStorage.token = response.token
-            // this.props.history.push('./')
+            alert("Login successful very good indeed")
+            this.props.history.push('./Beverages')
           }
         })
     }

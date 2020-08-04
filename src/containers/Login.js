@@ -45,6 +45,7 @@ export default class Login extends Component {
                         <input name="username" value={this.state.username} onChange={this.handleChange} placeholder="Username" className='input-field'  /> &nbsp;
                         <button type="submit" className='input-field' >Login</button>
                     </form>
+                    <p>If you do not have an account, please <a href='/signup'>create one here.</a></p>
                 </div>
             </div>
         )

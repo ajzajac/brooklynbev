@@ -45,11 +45,12 @@ export default class Signup extends Component {
         return (
             <div>
                  <div className="signupInput">
-                    <h1>Create New User</h1>
+                    <h1>Sign Up</h1>
                         <form className="auth-form" onSubmit={this.handleSubmit}>
                             <input name="username" value={this.state.username} onChange={this.handleChange} placeholder="Username" className='input-field' />&nbsp;&nbsp;
                             <button type="submit" className='input-field' >Signup</button>
                         </form>
+                        <p>Already have an account? <a href='/login'>Login Here</a></p>
                 </div>   
             </div>
         )

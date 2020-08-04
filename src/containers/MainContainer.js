@@ -19,7 +19,7 @@ export default class MainContainer extends Component {
     }
 
     logOut = () => {
-        this.props.history.push('/login')
+        // this.props.history.push('/login')
         this.setState({
             currentUser: null
         })

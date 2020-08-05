@@ -1,104 +1,55 @@
 import React, { Component } from 'react';
-import axios from 'axios'
-import {Link} from 'react-router-dom'
 
-class Login extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { 
-      username: '',
-      email: '',
-      password: '',
-      errors: ''
-     };
-  }
-
-handleChange = (event) => {
-    const {name, value} = event.target
-    this.setState({
-      [name]: value
-    })
-  };
-
-handleSubmit = (event) => {
-    event.preventDefault()
-    const {username, email, password} = this.state
-
-let user = {
-      username: username,
-      email: email,
-      password: password
+export default class Login extends Component {
+    state = {
+        username: "",
+        password: "",
     }
-    
-axios.post('http://localhost:3000/login', {user}, {withCredentials: true})
-    .then(response => {
-      if (response.data.logged_in) {
-        this.props.handleLogin(response.data)
-        this.redirect()
-      } else {
+
+    handleChange = (event) => {
         this.setState({
-          errors: response.data.errors
+          [event.target.name]: event.target.value
         })
       }
-    })
-    .catch(error => console.log('api errors:', error))
-  };
 
-redirect = () => {
-    this.props.history.push('/')
-}
+    handleSubmit = (e) => {
+        e.preventDefault()
 
-handleErrors = () => {
-    return (
-      <div>
-        <ul>
-        {this.state.errors.map(error => {
-        return <li key={error}>{error}</li>
-          })}
-        </ul>
-      </div>
-    )
-}
-
-render() {
-    const {username, email, password} = this.state
-return (
-      <div>
-        <h1>Log In</h1>
-        <form onSubmit={this.handleSubmit}>
-          <input
-            placeholder="username"
-            type="text"
-            name="username"
-            value={username}
-            onChange={this.handleChange}
-          />
-          <input
-            placeholder="email"
-            type="text"
-            name="email"
-            value={email}
-            onChange={this.handleChange}
-          />
-          <input
-            placeholder="password"
-            type="password"
-            name="password"
-            value={password}
-            onChange={this.handleChange}
-          />
-          <button placeholder="submit" type="submit">
-            Log In
-          </button>
-        </form>
-        <p>If you don't already have an account you can <Link to='/signup'>register here</Link></p>
-        <div>
-          {
-            this.state.errors ? this.handleErrors() : null
+        
+        fetch(`http://localhost:3000/login`,{
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            'Accept': "application/json"
+          },
+          body: JSON.stringify(this.state)
+        })
+        .then(res => res.json())
+        .then(response => {
+          if (response.errors){
+            alert(response.errors)
+          } else {
+            this.props.setUser(response.user)
+            localStorage.token = response.token
+            this.props.history.push('./beverages')
           }
-        </div>
-      </div>
-    );
-  }
+        })
+        
+    }
+
+    render() {
+        return (
+            <div>
+                <div className="input">
+                    <h1>Please Log In</h1>
+                    <form className="auth-form" onSubmit={this.handleSubmit}>
+                        <input name="username" value={this.state.username} onChange={this.handleChange} placeholder="Username" className='input-field'  /> &nbsp;
+                        <input name="password" value={this.state.password} onChange={this.handleChange} placeholder="Password" className='input-field' type="password" />&nbsp;&nbsp;
+                        <button type="submit" className='input-field' >Login</button>
+                    </form>
+                    <p>Or if you don't have an account, please <a href='/signup'>register here</a></p>
+                </div>
+            </div>
+        )
+    }
 }
-export default Login;

@@ -1,71 +1,61 @@
 import React, { Component } from 'react'
-import About from '../components/About'
 import Beverages from '../components/Beverages'
-import { Link, Route, Switch } from 'react-router-dom'
+import { Route, Switch } from 'react-router-dom'
 import Login from './Login'
 import Signup from './Signup'
 import NavBar from '../components/NavBar'
-import axios from 'axios'
 
 export default class MainContainer extends Component {
 
-    state = { 
-        isLoggedIn: false,
-        user: {}
-       };
-
-    componentDidMount(){
-        this.loginStatus()
+    state = {
+        currentUser: null,
     }
 
-    componentWillMount() {
-        return this.props.loggedInStatus ? this.redirect() : null
-    }
-       
-    handleLogin = (data) => {
+    setUser = (user) => {
         this.setState({
-          isLoggedIn: true,
-          user: data.user
+            currentUser: user,
         })
     }
 
-    handleLogout = () => {
+    logOut = () => {
         this.setState({
-        isLoggedIn: false,
-        user: {}
+            currentUser: null
         })
+        setTimeout(() => alert('Sucessfully Logged Out'), 200)
+        localStorage.removeItem('token')
     }
 
-    loginStatus = () => {
-        axios.get('http://localhost:3000/logged_in', 
-       {withCredentials: true})
-        .then(response => {
-          if (response.data.logged_in) {
-            this.handleLogin(response)
-          } else {
-            this.handleLogout()
-          }
-        })
-        .catch(error => console.log('api errors:', error))
-    }
-
-    handleClick = () => {
-        axios.delete('http://localhost:3001/logout', {withCredentials: true})
-        .then(response => {
-          this.handleLogout()
-          this.history.push('/')
-        })
-        .catch(error => console.log(error))
+    autoLogin(){
+        if (localStorage.token) {
+          fetch(`http://localhost:3000/auto_login`, {
+            headers: {
+              'Content-Type': 'application/json',
+              'Accept': 'application/json',
+              'Authorization': localStorage.token
+            },
+          })
+          .then(res => res.json())
+          .then(response => {
+            console.log(response.user)
+            this.setState({
+              currentUser: response.user
+            })
+          })
+        }
       }
+
+      componentDidMount(){
+        this.autoLogin()
+    }
 
     render() {
         return (
             <div>
-            <NavBar user={this.state.user} isLoggedIn={this.state.isLoggedIn} logOut={this.handleLogout}/>
+            <NavBar user={this.state.currentUser} isLoggedIn={this.state.isLoggedIn} logOut={this.logOut}/>
                 <Switch>
-                    <Route exact path='/' loggedInStatus={this.state.isLoggedIn}/>
-                    <Route exact path='/login' render={(routerProps) => <Login handleLogin={this.handleLogin} loggedInStatus={this.state.isLoggedIn} {...routerProps}/>} />
-                    <Route exact path='/signup' render={(routerProps) => <Signup handleLogin={this.handleLogin} loggedInStatus={this.state.isLoggedIn} {...routerProps} />} />
+                    <Route exact path='/' currentUser={this.state.currentUser}/>
+                    <Route exact path='/login' render={(routerProps) => <Login setUser={this.setUser} user={this.state.currentUser} {...routerProps}/>} />
+                    <Route exact path='/signup' render={(routerProps) => <Signup setUser={this.setUser} user={this.state.currentUser} {...routerProps} />} />
                     <Route exact path='/beverages' render={(routerProps) => <Beverages {...routerProps} />}/>
                 </Switch>
             </div>

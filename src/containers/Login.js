@@ -90,11 +90,8 @@ return (
           <button placeholder="submit" type="submit">
             Log In
           </button>
-          <div>
-           or <Link to='/signup'>sign up</Link>
-          </div>
-          
         </form>
+        <p>If you don't already have an account you can <Link to='/signup'>register here</Link></p>
         <div>
           {
             this.state.errors ? this.handleErrors() : null

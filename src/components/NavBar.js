@@ -11,7 +11,7 @@ export default function NavBar(props) {
                     <li><a href='/shop'>Shop</a></li>
                     <li><a href='/blog'>Blog</a></li>
                     <li><a href='/contact'>Contact</a></li>
-                    <li>{!props.user? <a href='/login'>Login</a> : <a href='/' onClick={props.logOut}>Logout</a>}</li>
+                    <li>{!props.isLoggedIn? <a href='/login'>Login</a> : <a href='/' onClick={props.logOut}>Logout</a>}</li>
                 </ul>
         </div>
     )

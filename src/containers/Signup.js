@@ -99,6 +99,7 @@ return (
           </button>
       
         </form>
+        <p>Or if you have an account already, please <a href='/login'>log in here</a></p>
         <div>
           {
             this.state.errors ? this.handleErrors() : null

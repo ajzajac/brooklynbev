@@ -61,7 +61,7 @@ export default class MainContainer extends Component {
     render() {
         return (
             <div>
-            <NavBar user={this.state.currentUser} logOut={this.logOut}/>
+            <NavBar user={this.state.user} isLoggedIn={this.state.isLoggedIn} logOut={this.handleLogout}/>
                 <Switch>
                     <Route exact path='/' loggedInStatus={this.state.isLoggedIn}/>
                     <Route exact path='/login' render={(routerProps) => <Login handleLogin={this.handleLogin} loggedInStatus={this.state.isLoggedIn} {...routerProps}/>} />

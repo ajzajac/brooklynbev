@@ -1,58 +1,111 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import axios from 'axios'
 
-export default class Signup extends Component {
+class Signup extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { 
+      username: '',
+      email: '',
+      password: '',
+      password_confirmation: '',
+      errors: ''
+     };
+  }
 
-    state = {
-        username: "",
+handleChange = (event) => {
+    const {name, value} = event.target
+    this.setState({
+      [name]: value
+    })
+  };
+
+handleSubmit = (event) => {
+    event.preventDefault()
+    const {username, email, password, password_confirmation} = this.state
+    let user = {
+      username: username,
+      email: email,
+      password: password,
+      password_confirmation: password_confirmation
     }
 
-    handleChange = (event) => {
+axios.post('http://localhost:3000/users', {user}, {withCredentials: true})
+    .then(response => {
+      if (response.data.status === 'created') {
+        this.props.handleLogin(response.data)
+        this.redirect()
+      } else {
         this.setState({
-          [event.target.name]: event.target.value
+          errors: response.data.errors
         })
       }
+    })
+    .catch(error => console.log('api errors:', error))
+  };
 
-      handleSubmit = (e) => {
-        e.preventDefault()
-  
-        
-          fetch(`http://localhost:3000/signup`,{
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-              'Accept': "application/json"
-            },
-            body: JSON.stringify({
-              name: this.state.username,
-            })
-          })
-            .then(res => res.json())
-            .then(response => {
-              if (response.errors){
-                alert(response.errors)
-                this.setState({username: ''})
-              } else {
-                this.props.setUser(response.user)
-                localStorage.token = response.token
-                // this.props.history.push('/')
-              }
-            })
-        } 
-      
-
-
-    render() {
-        return (
-            <div>
-                 <div className="signupInput">
-                    <h1>Sign Up</h1>
-                        <form className="auth-form" onSubmit={this.handleSubmit}>
-                            <input name="username" value={this.state.username} onChange={this.handleChange} placeholder="Username" className='input-field' />&nbsp;&nbsp;
-                            <button type="submit" className='input-field' >Signup</button>
-                        </form>
-                        <p>Already have an account? <a href='/login'>Login Here</a></p>
-                </div>   
-            </div>
-        )
-    }
+redirect = () => {
+    this.props.history.push('/')
 }
+
+handleErrors = () => {
+    return (
+      <div>
+        <ul>{this.state.errors.map((error) => {
+          return <li key={error}>{error}</li>
+        })}
+        </ul> 
+      </div>
+    )
+}
+
+render() {
+    const {username, email, password, password_confirmation} = this.state
+return (
+      <div>
+        <h1>Sign Up</h1>
+       <form onSubmit={this.handleSubmit}>
+          <input
+            placeholder="username"
+            type="text"
+            name="username"
+            value={username}
+            onChange={this.handleChange}
+          />
+          <input
+            placeholder="email"
+            type="text"
+            name="email"
+            value={email}
+            onChange={this.handleChange}
+          />
+          <input 
+            placeholder="password"
+            type="password"
+            name="password"
+            value={password}
+            onChange={this.handleChange}
+          />
+          <input
+            placeholder="password confirmation"
+            type="password"
+            name="password_confirmation"
+            value={password_confirmation}
+            onChange={this.handleChange}
+          />
+        
+          <button placeholder="submit" type="submit">
+            Sign Up
+          </button>
+      
+        </form>
+        <div>
+          {
+            this.state.errors ? this.handleErrors() : null
+          }
+        </div>
+      </div>
+    );
+  }
+}
+export default Signup;

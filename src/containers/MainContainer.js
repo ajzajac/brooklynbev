@@ -5,59 +5,67 @@ import { Link, Route, Switch } from 'react-router-dom'
 import Login from './Login'
 import Signup from './Signup'
 import NavBar from '../components/NavBar'
+import axios from 'axios'
 
 export default class MainContainer extends Component {
 
-    state = {
-        currentUser: null,
+    state = { 
+        isLoggedIn: false,
+        user: {}
+       };
+
+    componentDidMount(){
+        this.loginStatus()
     }
 
-    setUser = (user) => {
+    componentWillMount() {
+        return this.props.loggedInStatus ? this.redirect() : null
+    }
+       
+    handleLogin = (data) => {
         this.setState({
-            currentUser: user
+          isLoggedIn: true,
+          user: data.user
         })
     }
 
-    logOut = () => {
-        // this.props.history.push('/login')
+    handleLogout = () => {
         this.setState({
-            currentUser: null
+        isLoggedIn: false,
+        user: {}
         })
-        setTimeout(() => alert('Sucessfully Logged Out'), 200)
-        localStorage.clear()
     }
 
-    autoLogin(){
-        if (localStorage.token) {
-          fetch(`http://localhost:3000/auto_login`, {
-            headers: {
-              'Content-Type': 'application/json',
-              'Accept': 'application/json',
-              'Authorization': localStorage.token
-            },
-          })
-          .then(res => res.json())
-          .then(response => {
-            // console.log(response)
-            this.setState({
-              currentUser: response.user
-            })
-          })
-        }
+    loginStatus = () => {
+        axios.get('http://localhost:3000/logged_in', 
+       {withCredentials: true})
+        .then(response => {
+          if (response.data.logged_in) {
+            this.handleLogin(response)
+          } else {
+            this.handleLogout()
+          }
+        })
+        .catch(error => console.log('api errors:', error))
+    }
+
+    handleClick = () => {
+        axios.delete('http://localhost:3001/logout', {withCredentials: true})
+        .then(response => {
+          this.handleLogout()
+          this.history.push('/')
+        })
+        .catch(error => console.log(error))
       }
-
-      componentDidMount(){
-        this.autoLogin()
-    }
 
     render() {
         return (
             <div>
-            <NavBar user={this.state.currentUser} setUser={this.setUser} logOut={this.logOut}/>
+            <NavBar user={this.state.currentUser} logOut={this.logOut}/>
                 <Switch>
-                    <Route exact path='/' />
-                    <Route exact path='/login' render={(routerProps) => <Login setUser={this.setUser} {...routerProps}/>} />
-                    <Route exact path='/signup' render={(routerProps) => <Signup setUser={this.setUser} {...routerProps} />} />
+                    <Route exact path='/' loggedInStatus={this.state.isLoggedIn}/>
+                    <Route exact path='/login' render={(routerProps) => <Login handleLogin={this.handleLogin} loggedInStatus={this.state.isLoggedIn} {...routerProps}/>} />
+                    <Route exact path='/signup' render={(routerProps) => <Signup handleLogin={this.handleLogin} loggedInStatus={this.state.isLoggedIn} {...routerProps} />} />
                     <Route exact path='/beverages' render={(routerProps) => <Beverages {...routerProps} />}/>
                 </Switch>
             </div>

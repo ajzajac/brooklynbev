@@ -6,12 +6,17 @@ Along with company crafted beverages, the website will allow users to login, cre
 
 Merch shop and beverage shop to also be included.
 
+
 Tech Used for this includes:
 
 Ruby on Rails for the API
+
 React / Javascript for the Front End
+
 JWT Authentication
+
 Postgresql for the Database
+
 
 
 Stretch includes, but not limited to:

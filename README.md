@@ -9,7 +9,7 @@ Merch shop and beverage shop to also be included.
 
 Tech Used for this includes:
 
-Ruby on Rails for the API
+Ruby on Rails for the API (API found here: https://github.com/ajzajac/soft-drink-creator)
 
 React / Javascript for the Front End
 

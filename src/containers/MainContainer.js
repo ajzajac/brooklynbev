@@ -4,22 +4,30 @@ import { Route, Switch } from 'react-router-dom'
 import Login from './Login'
 import Signup from './Signup'
 import NavBar from '../components/NavBar'
+import AccountPage from '../components/AccountPage'
 
 export default class MainContainer extends Component {
 
     state = {
         currentUser: null,
+        isLoggedIn: false,
     }
-
+    
+    componentDidMount(){
+        this.autoLogin()
+    }
+    
     setUser = (user) => {
         this.setState({
             currentUser: user,
+            isLoggedIn: true
         })
     }
 
     logOut = () => {
         this.setState({
-            currentUser: null
+            currentUser: null,
+            isLoggedIn: false,
         })
         setTimeout(() => alert('Sucessfully Logged Out'), 200)
         localStorage.removeItem('token')
@@ -38,15 +46,14 @@ export default class MainContainer extends Component {
           .then(response => {
             console.log(response.user)
             this.setState({
-              currentUser: response.user
+              currentUser: response.user,
+              isLoggedIn: true,
             })
           })
         }
       }
 
-      componentDidMount(){
-        this.autoLogin()
-    }
+    
 
     render() {
         return (
@@ -57,6 +64,7 @@ export default class MainContainer extends Component {
                     <Route exact path='/login' render={(routerProps) => <Login setUser={this.setUser} user={this.state.currentUser} {...routerProps}/>} />
                     <Route exact path='/signup' render={(routerProps) => <Signup setUser={this.setUser} user={this.state.currentUser} {...routerProps} />} />
                     <Route exact path='/beverages' render={(routerProps) => <Beverages {...routerProps} />}/>
+                    <Route exact path='/profile' render={(routerProps) => <AccountPage user={this.state.currentUser} isLoggedIn={this.state.isLoggedIn} {...routerProps} />}/>
                 </Switch>
             </div>
         )

@@ -63,3 +63,43 @@
   text-decoration: none;
   color: black
 }
+
+/* CREATE BEVERAGE FORM PAGE */
+
+.creationCard {
+  display: flex;
+  box-shadow: 1px 1px 10px grey;
+  width: 80%;
+  margin: auto;
+  border-radius: 5px;
+}
+
+.beverageCreateForm {
+  padding-bottom: 5%;
+
+}
+
+.beverageCreateForm input {
+  display: block;
+  margin: 4% auto;
+}
+
+.creationCardLeft {
+  width: 25%;
+}
+
+.creationCardLeft p:first-child {
+  padding: 1%
+}
+
+.creationCardRight {
+  overflow: hidden;
+  width: 65%;
+  margin: auto;
+  margin-top: -1%;
+}
+
+.creationCardRight h3 {
+  padding-top: 1%;
+  margin-top: ;
+}

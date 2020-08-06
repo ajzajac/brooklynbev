@@ -3,7 +3,11 @@ import React, { Component } from 'react'
 export default class CreateYourOwn extends Component {
 
     state = {
-        beverageName: ''
+        beverageName: '',
+        baseFlavor: '',
+        secondaryFlavor: '',
+        waterType: '',
+        extraFlavor: '',
     }
 
     submitCreateBeverage = (event) => {
@@ -17,7 +21,11 @@ export default class CreateYourOwn extends Component {
         },
         body: JSON.stringify({
             name: this.state.beverageName,
-            user_id: this.props.user.id
+            base_flavor: this.state.baseFlavor,
+            secondary_flavor: this.state.secondaryFlavor,
+            water_type: this.state.waterType,
+            extra_flavor: this.state.extraFlavor,
+            user_id: this.props.user.id,
             })
         })
         .then(resp => resp.json())
@@ -41,8 +49,13 @@ export default class CreateYourOwn extends Component {
     render() {
         return (
             <div className='createBeveragePage'>
+            <h2>Create Your Own Custom Beverage</h2>
                 <form onSubmit={this.submitCreateBeverage}>
                     <input name='beverageName' value={this.state.beverageName} onChange={this.handleChange} placeholder="Beverage Name" />
+                    <input name='baseFlavor' value={this.state.baseFlavor} onChange={this.handleChange} placeholder="Base Flavor" />
+                    <input name='secondaryFlavor' value={this.state.secondaryFlavor} onChange={this.handleChange} placeholder="Accent Flavor" />
+                    <input name='waterType' value={this.state.waterType} onChange={this.handleChange} placeholder="Water Type" />
+                    <input name='extraFlavor' value={this.state.extraFlavor} onChange={this.handleChange} placeholder="Optional: Extra Flavor" />
                     <button type='submit'>Create</button>
                 </form>
             </div>

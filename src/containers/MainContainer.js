@@ -5,6 +5,7 @@ import Login from './Login'
 import Signup from './Signup'
 import NavBar from '../components/NavBar'
 import AccountPage from '../components/AccountPage'
+import CreateYourOwn from './CreateYourOwn'
 
 export default class MainContainer extends Component {
 
@@ -65,6 +66,7 @@ export default class MainContainer extends Component {
                     <Route exact path='/signup' render={(routerProps) => <Signup setUser={this.setUser} user={this.state.currentUser} {...routerProps} />} />
                     <Route exact path='/beverages' render={(routerProps) => <Beverages {...routerProps} />}/>
                     <Route exact path='/profile' render={(routerProps) => <AccountPage user={this.state.currentUser} isLoggedIn={this.state.isLoggedIn} {...routerProps} />}/>
+                    <Route exact path='/createbeverage' render={(routerProps) => <CreateYourOwn user={this.state.currentUser} {...routerProps} />}/>
                 </Switch>
             </div>
         )

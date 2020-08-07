@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
+import CreateBevModal from '../components/CreateBevModal'
+
 
 export default class CreateYourOwn extends Component {
+    
 
     state = {
         beverageName: '',
@@ -8,6 +11,25 @@ export default class CreateYourOwn extends Component {
         secondaryFlavor: '',
         waterType: '',
         extraFlavor: '',
+        modalShow: false,
+    }
+
+    showModal = () => {
+        this.setState({
+            modalShow: true
+        })
+    }
+    
+    closeModal = () => {
+        this.setState({
+            modalShow: false
+        })
+    }
+
+    onClickOutside = () => {
+        if(this.state.modalShow){
+            this.closeModal()
+        }
     }
 
     submitCreateBeverage = (event) => {
@@ -51,24 +73,32 @@ export default class CreateYourOwn extends Component {
             <div className='createBeveragePage'>
             <h2>Create Your Own Custom Beverage</h2>
                 <div className='creationCard'>
-                    <div className='creationCardLeft'>
+                    {/* <div className='creationCardLeft'>
                         <p>Try out a creation here!</p>
                         <form onSubmit={this.submitCreateBeverage} className='beverageCreateForm'>
                             <input name='beverageName' value={this.state.beverageName} onChange={this.handleChange} placeholder="Beverage Name" />
                             <input name='baseFlavor' value={this.state.baseFlavor} onChange={this.handleChange} placeholder="Base Flavor" />
                             <input name='secondaryFlavor' value={this.state.secondaryFlavor} onChange={this.handleChange} placeholder="Accent Flavor" />
-                            <input name='waterType' value={this.state.waterType} onChange={this.handleChange} type='' placeholder="Water Type" />
+                            <input name='waterType' value={this.state.waterType} onChange={this.handleChange} type='radio' placeholder="Water Type" />
                             <input name='extraFlavor' value={this.state.extraFlavor} onChange={this.handleChange} placeholder="Optional: Extra Flavor" />
                             <button type='submit'>Create</button>
                         </form>
-                    </div>
+                    </div> */}<CreateBevModal
+                            show={this.state.modalShow}
+                            onHide={() => this.closeModal()}
+                            onClickOutside={this.onClickOutside}
+                        />
                     <div className='creationCardRight'>
                         <h3>How this works</h3>
-                        <p>Here you are able to pick flavors from our seasonal selection, to completely customize your own beverage and we can ship it to you!</p>
-                        <p>First, Start by selecting your base flavor, this will be the main flavor component of your beverage.</p>
-                        <p>Next, pick an accent flavor, this will be a more subtle flavor meant to complement the base flavor.</p>
-                        <p>Then choose your style of the drink, bubbles or no bubbles, will this be a sparkling beverage or flat?</p>
+                            <p>Here you are able to pick flavors from our seasonal selection, to completely customize your own beverage and we can ship it to you!</p>
+                            <p>First, Start by selecting your base flavor, this will be the main flavor component of your beverage.</p>
+                            <p>Next, pick an accent flavor, this will be a more subtle flavor meant to complement the base flavor.</p>
+                            <p>Then choose your style of the drink, bubbles or no bubbles, will this be a sparkling beverage or flat?</p>
+                        <button variant="primary" onClick={() => this.showModal()}>
+                            Create Your Own Beverage Here!
+                        </button>
                     </div>
+                        
                 </div>
             </div>
         )

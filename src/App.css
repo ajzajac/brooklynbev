@@ -99,7 +99,33 @@
   margin-top: -1%;
 }
 
+.creationCardRight p {
+  font-size: .9em;
+}
+
 .creationCardRight h3 {
   padding-top: 1%;
-  margin-top: ;
+}
+
+.creationCardRight button {
+  margin-bottom: 3%;
+}
+
+.createBevModal {
+  width: 50%;
+  margin: auto;
+  text-align: center;
+  z-index: 10;
+  opacity: 1 !important;
+  background-color: rgba(255, 255, 255, 1);
+ 
+}
+
+.createBevFormModal {
+  margin: auto;
+  text-align: center;
+}
+
+.createBevFormModal form {
+  margin: auto;
 }

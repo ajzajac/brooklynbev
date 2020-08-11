@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import CreateBevModal from '../components/CreateBevModal'
+import BeverageInstructions from '../components/BeverageInstructions'
 
 
 export default class CreateYourOwn extends Component {
@@ -71,35 +72,8 @@ export default class CreateYourOwn extends Component {
     render() {
         return (
             <div className='createBeveragePage'>
-            <h2>Create Your Own Custom Beverage</h2>
-                <div className='creationCard'>
-                    {/* <div className='creationCardLeft'>
-                        <p>Try out a creation here!</p>
-                        <form onSubmit={this.submitCreateBeverage} className='beverageCreateForm'>
-                            <input name='beverageName' value={this.state.beverageName} onChange={this.handleChange} placeholder="Beverage Name" />
-                            <input name='baseFlavor' value={this.state.baseFlavor} onChange={this.handleChange} placeholder="Base Flavor" />
-                            <input name='secondaryFlavor' value={this.state.secondaryFlavor} onChange={this.handleChange} placeholder="Accent Flavor" />
-                            <input name='waterType' value={this.state.waterType} onChange={this.handleChange} type='radio' placeholder="Water Type" />
-                            <input name='extraFlavor' value={this.state.extraFlavor} onChange={this.handleChange} placeholder="Optional: Extra Flavor" />
-                            <button type='submit'>Create</button>
-                        </form>
-                    </div> */}<CreateBevModal
-                            show={this.state.modalShow}
-                            onHide={() => this.closeModal()}
-                            onClickOutside={this.onClickOutside}
-                        />
-                    <div className='creationCardRight'>
-                        <h3>How this works</h3>
-                            <p>Here you are able to pick flavors from our seasonal selection, to completely customize your own beverage and we can ship it to you!</p>
-                            <p>First, Start by selecting your base flavor, this will be the main flavor component of your beverage.</p>
-                            <p>Next, pick an accent flavor, this will be a more subtle flavor meant to complement the base flavor.</p>
-                            <p>Then choose your style of the drink, bubbles or no bubbles, will this be a sparkling beverage or flat?</p>
-                        <button variant="primary" onClick={() => this.showModal()}>
-                            Create Your Own Beverage Here!
-                        </button>
-                    </div>
-                        
-                </div>
+                <h2>Create Your Own Custom Beverage</h2>
+                  {this.state.modalShow ? <div><CreateBevModal show={this.state.modalShow} onHide={() => this.closeModal()}/> </div> : <BeverageInstructions show={this.state.modalShow} showModal={this.showModal} onHide={() => this.closeModal()}/> }
             </div>
         )
     }

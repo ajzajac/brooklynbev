@@ -7,19 +7,16 @@ export default function CreateBevModal(props) {
       <Modal
         {...props}
         className='createBevModal'
+        centered
       >
         <Modal.Header>
-          <Modal.Title id="modal-title">
-            Create a Beverage
-          </Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <CreateBevForm/>
         </Modal.Body>
-        <Modal.Footer>
-          <button onClick={props.onHide}>Close</button>
-        </Modal.Footer>
+        
+          <button onClick={props.onHide} style={{marginBottom: '2%'}}>Close</button>
+        
       </Modal>
     );
   }
-  

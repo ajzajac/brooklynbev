@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { useHistory } from 'react-router-dom'
 
 export default class CreateBevForm extends Component {
 
@@ -33,10 +34,8 @@ export default class CreateBevForm extends Component {
             if(resp.errors){
                 alert(resp.errors)
             } else {
-                alert("Your beverage has been created")
-                console.log(this.props)
-            }
-            
+                window.location.href='/beverages'
+            }  
         })
     }
 

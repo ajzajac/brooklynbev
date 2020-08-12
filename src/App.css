@@ -18,6 +18,8 @@
   color: rgb(243, 187, 138)
 }
 
+/* NAV BAR */
+
 .navBar {
   background-color: rgb(255, 255, 255);
   width: 100%;
@@ -66,9 +68,12 @@
 
 /* CREATE BEVERAGE FORM PAGE */
 
+.createBeveragePage h2 {
+  margin-bottom: 5%;
+}
+
 .beverageCreateForm {
   padding-bottom: 5%;
-  
 }
 
 .beverageCreateForm input {
@@ -87,9 +92,11 @@
 .creationCard {
   width: 65%;
   margin: auto;
+  padding: 1%;
   margin-top: -1%;
-  border-radius: 5px;
-  box-shadow: 1px 1px 10px grey;
+  border-radius: 10px;
+  background-color: rgb(238, 238, 238);
+  box-shadow: 0px 0px 5px rgb(185, 184, 184);
 }
 
 .creationCard p {
@@ -97,11 +104,12 @@
 }
 
 .creationCard h3 {
-  padding-top: 1%;
+  margin-bottom: 5%;
 }
 
 .creationCard button {
   margin-bottom: 3%;
+  margin-top: 3%;
 }
 
 .createBevModal {
@@ -110,16 +118,17 @@
   text-align: center;
   z-index: 1;
   opacity: 1 !important;
-  background-color: rgba(255, 255, 255, 1);
- border: black;
+  background-color: rgb(238, 238, 238);
+  border: rgb(219, 219, 219);
+  box-shadow: 0px 0px 5px rgb(185, 183, 183);
   border-width: 1px;
   border-style: solid;
+  border-radius: 10px;
 }
 
 .createBevFormModal {
   margin: auto;
   text-align: center;
-  
 }
 
 .createBevFormModal form {

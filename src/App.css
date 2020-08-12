@@ -133,6 +133,11 @@
   margin-bottom: 2%;
 }
 
+.bevCarousel {
+  width: 80%;
+  margin: auto;
+}
+
 .beveragesList {
   display: grid;
   grid-template-columns: repeat(2, 1fr);  

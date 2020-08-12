@@ -133,6 +133,10 @@
   margin-bottom: 2%;
 }
 
+.beveragesPage h3 {
+  margin-bottom: 3%;
+}
+
 .bevCarousel {
   width: 80%;
   margin: auto;
@@ -143,6 +147,7 @@
   grid-template-columns: repeat(2, 1fr);  
   grid-auto-rows: auto;
   grid-gap: .8rem;
+  padding-bottom: 3%;
 }
 
 .beverageCard {

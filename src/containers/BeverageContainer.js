@@ -16,9 +16,8 @@ export default class BeverageContainer extends Component {
         console.log(this.props.beverages)
         return (
             <div className='beveragesPage'>
-                <h2>All Custom Beverages</h2>
                 <div className='bevCarousel'>
-                    <h3>Featured Beverages</h3>
+                    <h2>Featured Beverages</h2>
                     <Carousel autoPlay infiniteLoop className='beverageCarousel'>
                         <div>
                             <img src="https://www.acouplecooks.com/wp-content/uploads/2019/09/Whiskey-Sour-111s.jpg" />
@@ -34,6 +33,7 @@ export default class BeverageContainer extends Component {
                         </div>
                     </Carousel>
             </div>
+            <h3>Below are more custom beverages!</h3>
                     <div className='beveragesList'>
                         {this.renderBeverages()}
                     </div> 

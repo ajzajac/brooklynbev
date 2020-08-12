@@ -66,10 +66,10 @@
   color: black
 }
 
-/* CREATE BEVERAGE FORM PAGE */
+/* CREATE BEVERAGE / FORM PAGE */
 
 .createBeveragePage h2 {
-  margin-bottom: 5%;
+  margin-bottom: 4%;
 }
 
 .beverageCreateForm {
@@ -79,14 +79,6 @@
 .beverageCreateForm input {
   display: block;
   margin: 4% auto;
-}
-
-.creationCardLeft {
-  width: 25%;
-}
-
-.creationCardLeft p:first-child {
-  padding: 1%
 }
 
 .creationCard {
@@ -104,7 +96,7 @@
 }
 
 .creationCard h3 {
-  margin-bottom: 5%;
+  margin-bottom: 4%;
 }
 
 .creationCard button {
@@ -132,5 +124,57 @@
 }
 
 .createBevFormModal form {
+  margin: auto;
+}
+
+/* BEVERAGES DISPLAY PAGE */
+
+.beveragesPage h2 {
+  margin-bottom: 2%;
+}
+
+.beveragesList {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);  
+  grid-auto-rows: auto;
+  grid-gap: .8rem;
+}
+
+.beverageCard {
+  height: 85%;
+  width: 70%;
+  display: flex;
+  flex-direction: row;
+  border-radius: 5px;
+  background-color: rgb(238, 238, 238);
+  box-shadow: 0px 0px 5px 0px  rgba(183, 183, 183);
+  transition: 0.3s;
+  position: relative;
+  margin: auto;
+  overflow-y: auto;
+  padding: 12px;
+}
+
+.beverageCard:hover {
+  transform: scale(1.05);
+  border-radius: 10px;
+  transition: all .2s ease-in-out;
+}
+
+.bevCardLeft {
+  width: 40%;
+  font-size: small;
+  text-align: left;
+  margin-left: 6%;
+}
+
+.bevCardRight {
+width: 60%;
+display: flex;
+flex-direction: column;
+}
+
+.bevCardRight button {
+  width: 50%;
   margin: auto;
 }

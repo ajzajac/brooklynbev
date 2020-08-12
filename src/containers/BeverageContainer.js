@@ -13,8 +13,11 @@ export default class BeverageContainer extends Component {
     render() {
         console.log(this.props.beverages)
         return (
-            <div>
-                {this.renderBeverages()}
+            <div className='beveragesPage'>
+                <h2>All Custom Beverages</h2>
+                    <div className='beveragesList'>
+                        {this.renderBeverages()}
+                    </div> 
             </div>
         )
     }

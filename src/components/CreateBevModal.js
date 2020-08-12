@@ -1,6 +1,7 @@
 import React from 'react'
 import Modal from 'react-bootstrap/Modal'
 import CreateBevForm from './CreateBevForm'
+import { Button } from 'react-bootstrap';
 
 export default function CreateBevModal(props) {
     return (
@@ -9,13 +10,14 @@ export default function CreateBevModal(props) {
         className='createBevModal'
         centered
       >
-        <Modal.Header>
+        <Modal.Header style={{margin: 'auto'}}>
+        Try out a Beverage Creation Here!
         </Modal.Header>
         <Modal.Body>
           <CreateBevForm {...props} user={props.user}/>
         </Modal.Body>
         
-          <button onClick={props.onHide} style={{marginBottom: '2%'}}>Go Back</button>
+          <Button variant='secondary' onClick={props.onHide} style={{marginBottom: '2%'}}>Go Back</Button>
         
       </Modal>
     );

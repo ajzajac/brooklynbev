@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { useHistory } from 'react-router-dom'
+import { Button } from 'react-bootstrap';
 
 export default class CreateBevForm extends Component {
 
@@ -50,14 +50,13 @@ export default class CreateBevForm extends Component {
         return (
             <div className="createBevFormModal">
                 <div className='bevForm'>
-                    <p>Try out a creation here!</p>
                         <form onSubmit={this.submitCreateBeverage} className='beverageCreateForm'>
                             <input name='beverageName'  autoFocus value={this.state.beverageName} onChange={this.handleChange} placeholder="Beverage Name" />
                             <input name='baseFlavor' value={this.state.baseFlavor} onChange={this.handleChange} placeholder="Base Flavor" />
                             <input name='secondaryFlavor' value={this.state.secondaryFlavor} onChange={this.handleChange} placeholder="Accent Flavor" />
-                            <input name='waterType' value={this.state.waterType} onChange={this.handleChange} type='' placeholder="Water Type" />
+                            <input name='waterType' value={this.state.waterType} onChange={this.handleChange} placeholder="Water Type" />
                             <input name='extraFlavor' value={this.state.extraFlavor} onChange={this.handleChange} placeholder="Optional: Extra Flavor" />
-                            <button type='submit'>Create!</button>
+                            <Button variant='primary' type='submit'>Create!</Button>
                         </form>
                     </div>
             </div>

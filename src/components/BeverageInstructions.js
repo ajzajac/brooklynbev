@@ -1,4 +1,5 @@
 import React from 'react'
+import Button from 'react-bootstrap/Button';
 
 export default function BeverageInstructions(props) {
     return (
@@ -9,9 +10,9 @@ export default function BeverageInstructions(props) {
                             <p>First, Start by selecting your base flavor, this will be the main flavor component of your beverage.</p>
                             <p>Next, pick an accent flavor, this will be a more subtle flavor meant to complement the base flavor.</p>
                             <p>Then choose your style of the drink, bubbles or no bubbles, will this be a sparkling beverage or flat?</p>
-                        <button variant="primary" onClick={() => props.showModal()}>
+                        <Button variant="primary" onClick={() => props.showModal()}>
                             Create Your Own Beverage Here!
-                        </button>
+                        </Button>
                 </div>
         </div>
     )

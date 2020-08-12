@@ -15,10 +15,8 @@ export default function CreateBevModal(props) {
         </Modal.Header>
         <Modal.Body>
           <CreateBevForm {...props} user={props.user}/>
+          <Button variant='secondary' onClick={props.onHide} style={{ width: '30%', margin: 'auto'}}>Go Back</Button>
         </Modal.Body>
-        
-          <Button variant='secondary' onClick={props.onHide} style={{marginBottom: '2%'}}>Go Back</Button>
-        
       </Modal>
     );
   }

@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import { Button } from 'react-bootstrap';
+import { Button, ToggleButton, ToggleButtonGroup } from 'react-bootstrap';
+
 
 export default class CreateBevForm extends Component {
 
@@ -55,6 +56,11 @@ export default class CreateBevForm extends Component {
                             <input name='baseFlavor' value={this.state.baseFlavor} onChange={this.handleChange} placeholder="Base Flavor" />
                             <input name='secondaryFlavor' value={this.state.secondaryFlavor} onChange={this.handleChange} placeholder="Accent Flavor" />
                             <input name='waterType' value={this.state.waterType} onChange={this.handleChange} placeholder="Water Type" />
+                                <ToggleButtonGroup type="checkbox" name='waterType' value={this.state.waterType} onChange={this.handleChange}>
+                                <ToggleButton name='waterType' value={this.state.waterType}>Flat</ToggleButton>
+                                <ToggleButton name='waterType' value={this.state.waterType}>Sparkling</ToggleButton>
+                                
+                                </ToggleButtonGroup>
                             <input name='extraFlavor' value={this.state.extraFlavor} onChange={this.handleChange} placeholder="Optional: Extra Flavor" />
                             <Button variant='primary' type='submit'>Create!</Button>
                         </form>

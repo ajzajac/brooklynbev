@@ -16,6 +16,7 @@ export default class MainContainer extends Component {
         currentUser: null,
         isLoggedIn: false,
         allBeverages: null,
+    
     }
     
     componentDidMount(){
@@ -86,7 +87,7 @@ export default class MainContainer extends Component {
                     <Route exact path='/login' render={(routerProps) => <Login setUser={this.setUser} user={this.state.currentUser} {...routerProps}/>} />
                     <Route exact path='/signup' render={(routerProps) => <Signup setUser={this.setUser} user={this.state.currentUser} {...routerProps} />} />
                     <Route exact path='/beverages' render={(routerProps) => <BeverageContainer beverages={this.state.allBeverages} {...routerProps} />}/>
-                    <Route exact path='/profile' render={(routerProps) => <AccountPage user={this.state.currentUser} isLoggedIn={this.state.isLoggedIn} {...routerProps} />}/>
+                    <Route exact path='/profile' render={(routerProps) => <AccountPage user={this.state.currentUser} allBeverages={this.state.allBeverages} isLoggedIn={this.state.isLoggedIn} {...routerProps} />}/>
                     <Route exact path='/createyourown' render={(routerProps) => <CreateYourOwn user={this.state.currentUser} {...routerProps} />}/>
                 </Switch>
             </div>

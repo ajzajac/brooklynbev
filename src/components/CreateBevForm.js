@@ -52,17 +52,21 @@ export default class CreateBevForm extends Component {
             <div className="createBevFormModal">
                 <div className='bevForm'>
                         <form onSubmit={this.submitCreateBeverage} className='beverageCreateForm'>
+                            <p>Give it a name:</p>
                             <input name='beverageName'  autoFocus value={this.state.beverageName} onChange={this.handleChange} placeholder="Beverage Name" />
+                            <p>Pick the main flavor:</p>
                             <input name='baseFlavor' value={this.state.baseFlavor} onChange={this.handleChange} placeholder="Base Flavor" />
+                            <p>Pick your accent flavor:</p>
                             <input name='secondaryFlavor' value={this.state.secondaryFlavor} onChange={this.handleChange} placeholder="Accent Flavor" />
-                            <input name='waterType' value={this.state.waterType} onChange={this.handleChange} placeholder="Water Type" />
-                                <ToggleButtonGroup type="checkbox" name='waterType' value={this.state.waterType} onChange={this.handleChange}>
-                                <ToggleButton name='waterType' value={this.state.waterType}>Flat</ToggleButton>
-                                <ToggleButton name='waterType' value={this.state.waterType}>Sparkling</ToggleButton>
-                                
+                            <p>Add an extra flavor if you'd like:</p>
+                            <input name='extraFlavor' value={this.state.extraFlavor} onChange={this.handleChange} placeholder="Optional: Extra Flavor" /> 
+                               <p>Choose the water type for the beverage:</p>
+                               <ToggleButtonGroup type="checkbox" name="waterType" value={this.state.waterType} style={{marginBottom: '8%'}}>
+                                    <ToggleButton variant='secondary' name='waterType' value='Flat' onChange={this.handleChange}>Flat</ToggleButton>
+                                    <ToggleButton variant='secondary' name='waterType' value='Sparkling' onChange={this.handleChange}>Sparkling</ToggleButton>
                                 </ToggleButtonGroup>
-                            <input name='extraFlavor' value={this.state.extraFlavor} onChange={this.handleChange} placeholder="Optional: Extra Flavor" />
-                            <Button variant='primary' type='submit'>Create!</Button>
+                                
+                            <Button  size='lg' variant='primary' type='submit'>Create!</Button>
                         </form>
                     </div>
             </div>

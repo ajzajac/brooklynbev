@@ -11,12 +11,14 @@ export default function CreateBevModal(props) {
         centered
       >
         <Modal.Header style={{margin: 'auto'}}>
-        Try out a Beverage Creation Here!
+        <b>Try out a Beverage Creation Here!</b>
         </Modal.Header>
         <Modal.Body>
           <CreateBevForm {...props} user={props.user}/>
-          <Button variant='secondary' onClick={props.onHide} style={{ width: '30%', margin: 'auto'}}>Go Back</Button>
         </Modal.Body>
+        <Modal.Footer>
+          <Button size='sm' variant='secondary' onClick={props.onHide} style={{ width: '20%', margin: 'auto', boxShadow: '0px 0px 1px black'}}>Go Back</Button>
+        </Modal.Footer>
       </Modal>
     );
   }

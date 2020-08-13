@@ -70,15 +70,30 @@
 
 .createBeveragePage h2 {
   margin-bottom: 4%;
+  margin-top: 1%
 }
 
 .beverageCreateForm {
   padding-bottom: 5%;
 }
 
+.beverageCreateForm p {
+  font-size: medium;
+}
+
 .beverageCreateForm input {
   display: block;
   margin: 4% auto;
+  margin-top: -1%;
+}
+
+.beverageCreateForm button {
+  display: block;
+  margin: auto;
+}
+
+.beverageCreateForm button:last-of-type {
+  box-shadow: 0px 0px 8px black;
 }
 
 .creationCard {
@@ -86,9 +101,9 @@
   margin: auto;
   padding: 1%;
   margin-top: -1%;
-  border-radius: 10px;
-  background-color: rgb(238, 238, 238);
-  box-shadow: 0px 0px 5px rgb(185, 184, 184);
+  border-radius: 15px;
+  background-color: rgb(235, 235, 235);
+  box-shadow: 0px 0px 10px rgb(185, 184, 184);
 }
 
 .creationCard p {
@@ -102,6 +117,7 @@
 .creationCard button {
   margin-bottom: 3%;
   margin-top: 3%;
+  box-shadow: 0px 0px 5px rgb(117, 116, 116);
 }
 
 .createBevModal {
@@ -110,21 +126,21 @@
   text-align: center;
   z-index: 1;
   opacity: 1 !important;
-  background-color: rgb(238, 238, 238);
+  background-color: rgb(235, 235, 235);
   border: rgb(219, 219, 219);
-  box-shadow: 0px 0px 5px rgb(185, 183, 183);
   border-width: 1px;
   border-style: solid;
-  border-radius: 10px;
 }
 
 .createBevFormModal {
   margin: auto;
   text-align: center;
+  
 }
 
 .createBevFormModal form {
   margin: auto;
+  
 }
 
 /* BEVERAGES DISPLAY PAGE */

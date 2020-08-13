@@ -17,10 +17,9 @@ export default class BeverageContainer extends Component {
         return (
             <div className='beveragesPage'>
                 <div className='bevCarousel'>
-                    <h2>Featured Beverages</h2>
-                    <Carousel autoPlay infiniteLoop className='beverageCarousel'>
+                    <Carousel autoPlay infiniteLoop className='beverageCarousel' dynamicHeight={true} >
                         <div>
-                            <img src="https://www.acouplecooks.com/wp-content/uploads/2019/09/Whiskey-Sour-111s.jpg" />
+                            <img  src="https://www.acouplecooks.com/wp-content/uploads/2019/09/Whiskey-Sour-111s.jpg" />
                             <p className="legend"></p>
                         </div>
                         <div>

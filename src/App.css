@@ -150,13 +150,13 @@
   margin-top: 2%;
 }
 
-.beveragesPage h3 {
-  margin-bottom: 3%;
+.beveragesPage {
+  margin: auto;
 }
 
 .bevCarousel {
-  width: 80%;
   margin: auto;
+  margin-top: 2%;
 }
 
 .beveragesList {

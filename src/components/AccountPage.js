@@ -39,7 +39,7 @@ export default class AccountPage extends Component {
     renderUserBeverages = () => {
         if(this.props.user !== null){
             const beverages = this.filterUserBeverages()
-           return beverages.map(beverage => <Beverage beverage={beverage}/>)
+           return beverages.map(beverage => <Beverage beverage={beverage} key={beverage.id}/>)
         }
     }
 
@@ -47,15 +47,14 @@ export default class AccountPage extends Component {
         const user = this.props.user
         return (
             <div className="accountPage">
-                <h2>My Account</h2>
                 <div className='accountPageContainer'>
                     <div className='accountPageLeft'>
                         <div className='accountDetails'>
                         <h3>{user ? this.props.user.username : null}</h3>
                         <p>{user ? this.props.user.email : null}</p>
-                        <Button size='sm'>My Cart</Button>
-                        <Button size='sm'>My Reviews</Button>
-                        <Button size='sm'>Saved Beverages</Button>
+                        <Button variant='outline-info' size='sm'>Your Cart</Button>
+                        <Button variant='outline-info' size='sm'>Your Reviews</Button>
+                        <Button variant='outline-info' size='sm'>Saved Beverages</Button>
                         </div>
                     </div>
                     <div className='accountPageRight'>

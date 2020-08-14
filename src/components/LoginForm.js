@@ -1,7 +1,8 @@
-import React, { Component } from 'react';
-import LoginModal from './LoginModal';
+import React, { Component } from 'react'
+import Button from 'react-bootstrap/Button'
 
-export default class Login extends Component {
+export default class LoginForm extends Component {
+
     state = {
         username: "",
         password: "",
@@ -17,7 +18,6 @@ export default class Login extends Component {
     handleSubmit = (e) => {
         e.preventDefault()
 
-        
         fetch(`http://localhost:3000/login`,{
           method: "POST",
           headers: {
@@ -33,21 +33,19 @@ export default class Login extends Component {
           } else {
             this.props.setUser(response.user)
             localStorage.token = response.token
-            this.props.history.push('./beverages')
+           this.props.history.push('./Beverages')
           }
         })
     }
-
-    sendUserBack = () => {
-      window.history.go(-1)
-    }
-
+    
     render() {
         return (
-            <div>
-                <div className="input">
-                  {this.state.showModal ? <LoginModal show={this.state.showModal} setUser={this.props.setUser} history={this.props.history} onHide={() => this.sendUserBack()}/> : null}
-                </div>
+            <div className='loginForm'>
+                <form className="auth-form" onSubmit={this.handleSubmit}>
+                    <input name="username" value={this.state.username} onChange={this.handleChange} placeholder="Username" className='input-field'  /> &nbsp;
+                    <input name="password" value={this.state.password} onChange={this.handleChange} placeholder="Password" className='input-field' type="password" />&nbsp;&nbsp;
+                    <Button type="submit" className='input-field'>Login</Button>
+                </form>
             </div>
         )
     }

@@ -66,6 +66,28 @@
   color: black
 }
 
+/* LOGIN FORM / LOGIN */
+
+.loginForm input {
+  display: block;
+  margin: auto;
+}
+
+.loginForm button {
+  display: block;
+  margin: auto;
+}
+
+.loginModalBody {
+  margin: auto;
+}
+
+.loginModalBody p {
+  margin-top: 5%;
+  margin-bottom: -2%;
+}
+
+
 /* CREATE BEVERAGE / FORM PAGE */
 
 .createBeveragePage h2 {

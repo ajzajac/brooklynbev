@@ -1,7 +1,8 @@
-import React, { Component } from 'react';
-import SignupModal from './SignupModal';
+import React, { Component } from 'react'
+import Button from 'react-bootstrap/Button'
 
-class Signup extends Component {
+export default class SignupForm extends Component {
+
     state = {
         username: "",
         password: "",
@@ -48,22 +49,17 @@ class Signup extends Component {
         }
       }
 
-      sendUserBack = () => {
-        window.history.go(-1)
-      }
-
     render() {
         return (
-            <div>
-                 <div className="signupInput">
-                    {this.state.showModal ? 
-                    <SignupModal show={this.state.showModal} history={this.props.history} setUser={this.props.setUser} onHide={() => this.sendUserBack()}/> 
-                    :
-                     null}
-                </div>   
+            <div className='signupForm'>
+                <form className="auth-form" onSubmit={this.handleSubmit}>
+                    <input name="username" value={this.state.username} onChange={this.handleChange} placeholder="Username" className='input-field' />&nbsp;&nbsp;
+                    <input name="email" value={this.state.email} onChange={this.handleChange} placeholder="Email" className='input-field' />&nbsp;&nbsp;
+                    <input name="password" value={this.state.password} onChange={this.handleChange} placeholder="Password" className='input-field' type="password" />&nbsp;&nbsp;
+                    <input name="passwordConfirmation" value={this.state.passwordConfirmation} onChange={this.handleChange} placeholder="Confirm Password" className='input-field' type="password" />&nbsp;&nbsp;
+                    <Button type="submit" className='input-field' >Signup</Button>
+                </form>
             </div>
         )
     }
 }
-
-export default Signup;

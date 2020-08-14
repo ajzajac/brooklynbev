@@ -42,7 +42,7 @@ export default class LoginForm extends Component {
         return (
             <div className='loginForm'>
                 <form className="auth-form" onSubmit={this.handleSubmit}>
-                    <input name="username" value={this.state.username} onChange={this.handleChange} placeholder="Username" className='input-field'  /> &nbsp;
+                    <input autoFocus name="username" value={this.state.username} onChange={this.handleChange} placeholder="Username" className='input-field'  /> &nbsp;
                     <input name="password" value={this.state.password} onChange={this.handleChange} placeholder="Password" className='input-field' type="password" />&nbsp;&nbsp;
                     <Button type="submit" className='input-field'>Login</Button>
                 </form>

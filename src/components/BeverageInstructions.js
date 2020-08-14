@@ -28,10 +28,10 @@ export default function BeverageInstructions(props) {
                 </div>
             </div>
             <div className='beverageInstructionsButton'>
-                <p>If you're interested, give it a shot here!</p>
                     <Button variant="primary" onClick={() => props.showModal()}>
                         Create Your Own Beverage!
                     </Button> 
+                    <p>If you're interested, give it a shot here!</p>
             </div>
         </div>
     )

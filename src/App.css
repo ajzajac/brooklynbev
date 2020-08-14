@@ -199,15 +199,20 @@
 
 .beverageInstructionsButton {
   width: 40%;
-  padding: 3%;
+  padding: 2%;
   margin: auto;
   margin-bottom: 7%;
   border-radius: 5px;
   box-shadow: 0px 0px 5px rgb(136, 136, 136);
 }
 
+.beverageInstructionsButton p {
+  margin-bottom: -1%;
+}
+
 .beverageInstructionsButton button {
   box-shadow: 0px 0px 3px rgb(45, 0, 167);
+  margin-bottom: 3%;
 }
 
 

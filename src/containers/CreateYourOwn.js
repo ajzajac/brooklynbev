@@ -36,7 +36,7 @@ export default class CreateYourOwn extends Component {
     render() {
         return (
             <div className='createBeveragePage'>
-                <h2>Create Your Own Custom Beverage</h2>
+                <h2>How It Works</h2>
                   {this.state.modalShow ? 
                   <div><CreateBevModal show={this.state.modalShow} user={this.props.user} onHide={() => this.closeModal()}/> </div> 
                   : 

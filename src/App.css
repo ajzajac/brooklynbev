@@ -223,13 +223,20 @@
   margin-top: 2%;
 }
 
-.beveragesPage {
-  margin: auto;
+.featuredBeveragesContainer {
+    height: 20%;
 }
 
-.bevCarousel {
+.featuredBeverageCard {
+}
+
+.carousel {
   margin: auto;
-  margin-top: 2%;
+  width: 40%;
+}
+
+.beveragesPage {
+  margin: auto;
 }
 
 .beveragesList {

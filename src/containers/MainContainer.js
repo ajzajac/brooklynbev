@@ -16,7 +16,6 @@ export default class MainContainer extends Component {
         currentUser: null,
         isLoggedIn: false,
         allBeverages: null,
-    
     }
     
     componentDidMount(){

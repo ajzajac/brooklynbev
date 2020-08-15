@@ -1,9 +1,40 @@
 import React, { Component } from 'react'
 import Beverage from '../components/Beverage'
-import { Carousel } from 'react-responsive-carousel'
-import "react-responsive-carousel/lib/styles/carousel.min.css"
+import Carousel from 'react-bootstrap/Carousel'
+import FeaturedBeverageCard from '../components/FeaturedBeverageCard'
+
+const baseAPI = 'http://localhost:3000'
 
 export default class BeverageContainer extends Component {
+
+    state = {
+        userBeverages: null,
+        recommendedBeverages: null,
+        allBeverages: null,
+    }
+
+    componentDidMount(){
+        this.getBeverages()
+        this.filterUserBeverages()
+        this.getRecommendedBeverages()
+        
+    }
+
+    getBeverages = () => {
+        fetch(baseAPI + '/beverages', {
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+              },
+        })
+        .then(response => response.json())
+        .then(response => {
+            // console.log(response)
+            this.setState({
+                allBeverages: response
+            })
+        })
+    }
 
     renderBeverages = () => {
         if(this.props.beverages !== null){
@@ -11,28 +42,64 @@ export default class BeverageContainer extends Component {
         }
     }
 
+    filterUserBeverages = () => {
+        console.log(this.state.allBeverages)
+        if(this.state.allBeverages !== null){
+         let userBeverages = this.state.allBeverages.filter(beverage => beverage.user_id === this.props.user.id)
+         console.log("hello")
+         this.setState({
+             userBeverages: userBeverages
+         })
+        }
+     }
+
+    getRecommendedBeverages = () => {
+        if(this.state.userBeverages !== null){
+            let recommendedBeverages = this.props.beverages.filter(beverage => beverage.base_flavor === this.state.userBeverages[0].base_flavor || this.state.userBeverages[1].base_flavor)
+            console.log("hello")
+            this.setState({
+                recommendedBeverages: recommendedBeverages
+            })
+        }
+    }
+
+    renderCarouselItems = () => {
+
+    }
+
+
 
     render() {
-        console.log(this.props.beverages)
+        
         return (
+            
             <div className='beveragesPage'>
-                <div className='bevCarousel'>
-                    <Carousel autoPlay infiniteLoop className='beverageCarousel' dynamicHeight={true} >
-                        <div>
-                            <img  src="https://www.acouplecooks.com/wp-content/uploads/2019/09/Whiskey-Sour-111s.jpg" />
-                            <p className="legend"></p>
-                        </div>
-                        <div>
-                            <img src="https://stevethebartender.com.au/wp-content/uploads/2015/11/winter-sun-cocktail.jpg" />
-                            <p className="legend"></p>
-                        </div>
-                        <div>
-                            <img src="https://149366112.v2.pressablecdn.com/wp-content/uploads/2019/01/winter-wonderland-cocktail.jpg" />
-                            <p className="legend"></p>
-                        </div>
-                    </Carousel>
+            <h3>Here Are Some Beverages We Think You May Like</h3>
+            <div className='featuredBeveragesContainer'>
+            <Carousel style={{height: '10%'}}>
+                <Carousel.Item>
+                    {this.state.recommendedBeverages ? <FeaturedBeverageCard beverage={this.state.recommendedBeverages[0]}/> : null } 
+                    <Carousel.Caption>
+                    <h3>First slide label</h3>
+                    <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+                    </Carousel.Caption>
+                </Carousel.Item>
+                <Carousel.Item>
+                {this.state.recommendedBeverages ? <FeaturedBeverageCard beverage={this.state.recommendedBeverages[1]}/> : null }
+                    <Carousel.Caption>
+                    <h3>Second slide label</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                    </Carousel.Caption>
+                </Carousel.Item>
+                <Carousel.Item>
+                {this.state.recommendedBeverages ? <FeaturedBeverageCard beverage={this.state.recommendedBeverages[2]}/> : null }
+                    <Carousel.Caption>
+                    <h3>Third slide label</h3>
+                    <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+                    </Carousel.Caption>
+                </Carousel.Item>
+                </Carousel>
             </div>
-            <h3>Below are more custom beverages!</h3>
                     <div className='beveragesList'>
                         {this.renderBeverages()}
                     </div> 

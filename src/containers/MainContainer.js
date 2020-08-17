@@ -16,11 +16,16 @@ export default class MainContainer extends Component {
         currentUser: null,
         isLoggedIn: false,
         allBeverages: null,
+        recommendedBeverages: null,
+        userBeverages: null,
     }
     
-    componentDidMount(){
+    async componentDidMount() {
         this.autoLogin()
         this.getBeverages()
+        await new Promise(r => setTimeout(r, 500)); // using timeout to solve async recommended beverage algorithm
+        this.filterUserBeverages()
+        this.getRecommendedBeverages()
     }
     
     getBeverages = () => {
@@ -75,9 +80,40 @@ export default class MainContainer extends Component {
         }
       }
 
+      filterUserBeverages = () => {
+        
+        if(this.state.allBeverages !== null){
+         let userBeverages = this.state.allBeverages.filter(beverage => beverage.user_id === this.state.currentUser.id)
+         
+         this.setState({
+             userBeverages: userBeverages
+         })
+        }
+     }
+
+    getRecommendedBeverages = () => {
+        if(this.state.userBeverages !== null){
+            // let recommendedBeverages = this.state.allBeverages.filter(beverage => this.state.userBeverages.includes(beverage.base_flavor))
+            let recommendedBeverages = []
+            for(let i=0; i < this.state.allBeverages.length; i++){
+                console.log(this.state.userBeverages[i])
+                for(let i=0; i < this.state.userBeverages.length; i++){
+                        console.log(this.state.allBeverages[i])
+                    
+                }
+            }
+              
+            console.log(recommendedBeverages)
+            this.setState({
+                recommendedBeverages: recommendedBeverages
+            })
+        }
+    }
+
     
 
     render() {
+       
         return (
             <div>
             <NavBar user={this.state.currentUser} isLoggedIn={this.state.isLoggedIn} logOut={this.logOut}/>
@@ -85,7 +121,7 @@ export default class MainContainer extends Component {
                     <Route exact path='/' currentUser={this.state.currentUser}/>
                     <Route exact path='/login' render={(routerProps) => <Login setUser={this.setUser} user={this.state.currentUser} {...routerProps}/>} />
                     <Route exact path='/signup' render={(routerProps) => <Signup setUser={this.setUser} user={this.state.currentUser} {...routerProps} />} />
-                    <Route exact path='/beverages' render={(routerProps) => <BeverageContainer beverages={this.state.allBeverages} {...routerProps} />}/>
+                    <Route exact path='/beverages' render={(routerProps) => <BeverageContainer recommendedBeverages={this.state.recommendedBeverages} beverages={this.state.allBeverages} {...routerProps} />}/>
                     <Route exact path='/profile' render={(routerProps) => <AccountPage user={this.state.currentUser} allBeverages={this.state.allBeverages} isLoggedIn={this.state.isLoggedIn} {...routerProps} />}/>
                     <Route exact path='/createyourown' render={(routerProps) => <CreateYourOwn user={this.state.currentUser} {...routerProps} />}/>
                 </Switch>

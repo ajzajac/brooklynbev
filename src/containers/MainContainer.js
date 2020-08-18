@@ -96,14 +96,14 @@ export default class MainContainer extends Component {
             // let recommendedBeverages = this.state.allBeverages.filter(beverage => this.state.userBeverages.includes(beverage.base_flavor))
             let recommendedBeverages = []
             for(let i=0; i < this.state.allBeverages.length; i++){
-                console.log(this.state.userBeverages[i])
+                // console.log(this.state.userBeverages[i])
                 for(let i=0; i < this.state.userBeverages.length; i++){
-                        console.log(this.state.allBeverages[i])
+                        // console.log(this.state.allBeverages[i])
                     
                 }
             }
               
-            console.log(recommendedBeverages)
+            // console.log(recommendedBeverages)
             this.setState({
                 recommendedBeverages: recommendedBeverages
             })

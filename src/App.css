@@ -356,3 +356,34 @@ text-align: left;
   margin-bottom: 2%;
   width: 100%;
 }
+
+/* CREATE REVIEW MODAL */
+
+.reviewModalForm {
+  display: block;
+  margin: auto;
+  text-align: center;
+}
+
+.reviewModalForm form {
+  margin: auto;
+}
+
+.reviewModalForm p {
+  margin-bottom: -1%;
+  padding-bottom: 2%;
+}
+
+.reviewModalForm input {
+  display: block;
+  margin: auto;
+  margin-bottom: 2%;
+}
+
+.reviewCreateForm input:first-child {
+  width: 40%;
+}
+
+.reviewCreateForm button{
+  margin-top: 2%;
+}

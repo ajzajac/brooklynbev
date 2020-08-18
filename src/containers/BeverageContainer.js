@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import Beverage from '../components/Beverage'
 import Carousel from 'react-bootstrap/Carousel'
 import FeaturedBeverageCard from '../components/FeaturedBeverageCard'
-import ReadReviewModal from './ReadReviewModal'
+import ReadReviewModal from './ReadReviewModalList'
 
 const baseAPI = 'http://localhost:3000'
 

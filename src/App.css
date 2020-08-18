@@ -387,3 +387,22 @@ text-align: left;
 .reviewCreateForm button{
   margin-top: 2%;
 }
+
+/* READ REVIEW POPOUT MODAL */
+
+.reviewCard {
+  text-align: left;
+  border-bottom: solid rgb(182, 182, 182) 1px;
+  padding: 2%;
+  margin-bottom: 2%;
+  overflow: auto;
+}
+
+.reviewCard  h3 {
+
+}
+
+.reviewCard p {
+  margin-bottom: 3%;
+  padding: 1%;
+}

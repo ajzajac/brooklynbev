@@ -44,8 +44,6 @@ export default class CreateReviewForm extends Component {
 
 
     render() {
-        console.log(this.props.beverage.id)
-        console.log(this.props.user.id)
         return (
             <div className='reviewModalForm'>
                 <form onSubmit={this.submitCreateReview} className='reviewCreateForm'>

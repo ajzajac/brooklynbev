@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { Button } from 'react-bootstrap';
-import { render } from '@testing-library/react';
 import Modal from 'react-bootstrap/Modal'
 import CreateReviewForm from './CreateReviewForm';
 import ReadReviewModalList from '../containers/ReadReviewModalList';
@@ -19,7 +18,7 @@ export default class Beverage extends Component {
     }
 
     findReviews = () => {
-        if(this.props.beverage !== null){
+        if(this.props.reviews !== null){
            this.setState({
                beverageReviews: this.props.reviews.filter(review => this.props.beverage.id === review.beverage_id)
            }) 

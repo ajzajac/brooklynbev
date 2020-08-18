@@ -7,11 +7,13 @@ const baseAPI = 'http://localhost:3000'
 export default class AccountPage extends Component {
 
     state = {
-        allBeverages: null
+        allBeverages: null,
+        beverageReviews: null,
     }
 
     componentDidMount(){
         this.getAllBeverages()
+    
     }
 
     getAllBeverages = () => {
@@ -37,9 +39,9 @@ export default class AccountPage extends Component {
     }
 
     renderUserBeverages = () => {
-        if(this.props.user !== null){
+        if(this.props.user && this.state.allBeverages !== null){
             const beverages = this.filterUserBeverages()
-           return beverages.map(beverage => <Beverage beverage={beverage} key={beverage.id}/>)
+           return beverages.map(beverage => <Beverage beverage={beverage} user={this.props.user} reviews={this.props.reviews} key={beverage.id}/>)
         }
     }
 

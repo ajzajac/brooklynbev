@@ -18,14 +18,17 @@ export default class MainContainer extends Component {
         allBeverages: null,
         recommendedBeverages: null,
         userBeverages: null,
+        beverageReviews: null,
     }
     
     async componentDidMount() {
         this.autoLogin()
         this.getBeverages()
+        this.getReviews()
         await new Promise(r => setTimeout(r, 500)); // using timeout to solve async recommended beverage algorithm
         this.filterUserBeverages()
         this.getRecommendedBeverages()
+        
     }
     
     getBeverages = () => {
@@ -99,10 +102,8 @@ export default class MainContainer extends Component {
                 // console.log(this.state.userBeverages[i])
                 for(let i=0; i < this.state.userBeverages.length; i++){
                         // console.log(this.state.allBeverages[i])
-                    
                 }
             }
-              
             // console.log(recommendedBeverages)
             this.setState({
                 recommendedBeverages: recommendedBeverages
@@ -110,7 +111,21 @@ export default class MainContainer extends Component {
         }
     }
 
-    
+    getReviews = () => {
+        fetch(baseAPI + '/reviews', {
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+              },
+        })
+        .then(response => response.json())
+        .then(response => {
+            // console.log(response)
+            this.setState({
+                beverageReviews: response
+            })
+        })
+    }
 
     render() {
        
@@ -122,7 +137,7 @@ export default class MainContainer extends Component {
                     <Route exact path='/login' render={(routerProps) => <Login setUser={this.setUser} user={this.state.currentUser} {...routerProps}/>} />
                     <Route exact path='/signup' render={(routerProps) => <Signup setUser={this.setUser} user={this.state.currentUser} {...routerProps} />} />
                     <Route exact path='/beverages' render={(routerProps) => <BeverageContainer recommendedBeverages={this.state.recommendedBeverages} beverages={this.state.allBeverages} user={this.state.currentUser} {...routerProps} />}/>
-                    <Route exact path='/profile' render={(routerProps) => <AccountPage user={this.state.currentUser} allBeverages={this.state.allBeverages} isLoggedIn={this.state.isLoggedIn} {...routerProps} />}/>
+                    <Route exact path='/profile' render={(routerProps) => <AccountPage user={this.state.currentUser} allBeverages={this.state.allBeverages} reviews={this.state.beverageReviews} isLoggedIn={this.state.isLoggedIn} {...routerProps} />}/>
                     <Route exact path='/createyourown' render={(routerProps) => <CreateYourOwn user={this.state.currentUser} {...routerProps} />}/>
                 </Switch>
             </div>

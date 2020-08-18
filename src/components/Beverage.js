@@ -55,7 +55,7 @@ export default class Beverage extends Component {
                 <Modal.Title style={{margin: 'auto'}}>Beverage Review</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <CreateReviewForm />
+                    <CreateReviewForm user={this.props.user} beverage={this.props.beverage}/>
                 </Modal.Body>
                 <Modal.Footer style={{margin: 'auto'}}>
                 <Button variant="secondary"  size='sm' onClick={this.handleClose}>

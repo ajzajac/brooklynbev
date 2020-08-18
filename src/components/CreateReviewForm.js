@@ -6,6 +6,8 @@ export default class CreateReviewForm extends Component {
     state = {
         reviewDescription: '',
         reviewRating: '',
+        beverageId: this.props.beverage.id,
+        user: this.props.user,
     }
 
     submitCreateReview = (event) => {
@@ -20,6 +22,8 @@ export default class CreateReviewForm extends Component {
             body: JSON.stringify({
                 description: this.state.reviewDescription,
                 rating: this.state.reviewRating,
+                user_id: this.state.user.id,
+                beverage_id: this.state.beverageId,
             })
         })
         .then(resp => resp.json())
@@ -40,13 +44,15 @@ export default class CreateReviewForm extends Component {
 
 
     render() {
+        console.log(this.props.beverage.id)
+        console.log(this.props.user.id)
         return (
             <div className='reviewModalForm'>
                 <form onSubmit={this.submitCreateReview} className='reviewCreateForm'>
                     <p>Review: </p>
-                    <input value={this.state.reviewDescription} onChange={this.handleChange} placeholder='Write Your Review Here' />
+                    <input name="reviewDescription" value={this.state.reviewDescription} onChange={this.handleChange} placeholder='Write Your Review Here' />
                     <p>Rating: </p>
-                    <input value={this.state.reviewRating} onChange={this.handleChange} placeholder='Rating 1-5' />
+                    <input name="reviewRating" value={this.state.reviewRating} onChange={this.handleChange} placeholder='Rating 1-5' />
                     <Button size='sm' variant='primary' type='submit'>Submit</Button>
                 </form>
             </div>

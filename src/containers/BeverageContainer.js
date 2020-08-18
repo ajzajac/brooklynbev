@@ -52,7 +52,7 @@ export default class BeverageContainer extends Component {
 
     renderBeverages = () => {
         if(this.props.beverages !== null){
-           return this.props.beverages.map(beverage => <Beverage beverage={beverage} reviews={this.state.beverageReviews} key={beverage.id}/>)
+           return this.props.beverages.map(beverage => <Beverage beverage={beverage} reviews={this.state.beverageReviews} user={this.props.user} key={beverage.id}/>)
         }
     }
 

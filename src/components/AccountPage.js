@@ -13,7 +13,7 @@ export default class AccountPage extends Component {
 
     componentDidMount(){
         this.getAllBeverages()
-    
+        this.getReviews()
     }
 
     getAllBeverages = () => {
@@ -32,6 +32,22 @@ export default class AccountPage extends Component {
         })
     }
 
+    getReviews = () => {
+        fetch(baseAPI + '/reviews', {
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+              },
+        })
+        .then(response => response.json())
+        .then(response => {
+            // console.log(response)
+            this.setState({
+                beverageReviews: response
+            })
+        })
+    }
+
     filterUserBeverages = () => {
        if(this.state.allBeverages !== null){
         return this.state.allBeverages.filter(beverage => beverage.user_id === this.props.user.id)
@@ -41,7 +57,7 @@ export default class AccountPage extends Component {
     renderUserBeverages = () => {
         if(this.props.user && this.state.allBeverages !== null){
             const beverages = this.filterUserBeverages()
-           return beverages.map(beverage => <Beverage beverage={beverage} user={this.props.user} reviews={this.props.reviews} key={beverage.id}/>)
+           return beverages.map(beverage => <Beverage beverage={beverage} user={this.props.user} reviews={this.state.beverageReviews} key={beverage.id}/>)
         }
     }
 

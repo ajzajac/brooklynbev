@@ -250,8 +250,10 @@
   padding: 10px;
 }
 
+/* BEVERAGE CARDS */
+
 .beverageCard {
-  height: 80%;
+  height: 85%;
   width: 50%;
   display: flex;
   flex: 0 0 auto;
@@ -328,6 +330,7 @@ flex-direction: column;
 .accountPageLeft {
 padding: 5px;
 text-align: left;
+
 }
 
 .accountDetails {
@@ -344,6 +347,8 @@ text-align: left;
   display: block;
   margin-top: 10px;
 }
+
+
 
 .accountDetails p {
   margin-bottom: 15%;

@@ -61,6 +61,8 @@ export default class AccountPage extends Component {
         }
     }
 
+    
+
     render() {
         const user = this.props.user
         return (
@@ -71,8 +73,8 @@ export default class AccountPage extends Component {
                         <h3>{user ? this.props.user.username : null}</h3>
                         <p>{user ? this.props.user.email : null}</p>
                         <Button variant='outline-info' size='sm'>Your Cart</Button>
-                        <Button variant='outline-info' size='sm'>Your Reviews</Button>
-                        <Button variant='outline-info' size='sm'>Saved Beverages</Button>
+                        <Button variant='outline-info' size='sm'>Favorites</Button>
+                        <Button variant='outline-info' size='sm'>Change Email</Button>
                         </div>
                     </div>
                     <div className='accountPageRight'>

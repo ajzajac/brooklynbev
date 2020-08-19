@@ -9,11 +9,13 @@ export default class AccountPage extends Component {
     state = {
         allBeverages: null,
         beverageReviews: null,
+        favorites: null,
     }
 
     componentDidMount(){
         this.getAllBeverages()
         this.getReviews()
+        this.getUserFavorites()
     }
 
     getAllBeverages = () => {
@@ -61,7 +63,39 @@ export default class AccountPage extends Component {
         }
     }
 
-    
+    getUserFavorites = () => {
+        fetch(baseAPI + '/favorites', {
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+              },
+        })
+        .then(response => response.json())
+        .then(response => {
+            this.setState({
+                favorites: response
+            })
+        })
+    }
+
+    // filterUserFavorites = () => {
+    //     if(this.state.favorites !== null){
+    //         return this.state.allBeverages.filter(beverage => favorite.user_id === this.props.user.id)
+    //     }
+    // }
+
+    getFavoriteBeverages = () => {
+        this.filterUserFavorites()
+        
+    }
+
+    renderFavorites = () => {
+        if(this.props.user && this.state.favorites !== null){
+            const favorites = this.filterUserFavorites()
+            return favorites.map(favorite => <Beverage beverage={favorite} user={this.props.user} reviews={this.state.beverageReviews} key={favorite.id} />)
+        }
+    }
+
 
     render() {
         const user = this.props.user

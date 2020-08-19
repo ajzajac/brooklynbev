@@ -4,6 +4,7 @@ import Modal from 'react-bootstrap/Modal'
 import CreateReviewForm from './CreateReviewForm';
 import ReadReviewModalList from '../containers/ReadReviewModalList';
 
+const baseAPI = 'http://localhost:3000'
 
 export default class Beverage extends Component {
     
@@ -11,6 +12,7 @@ export default class Beverage extends Component {
         beverageReviews: null,
         showModal: false,
         showReviews: false,
+        favorite: false,
     }
 
     componentDidMount(){
@@ -44,6 +46,28 @@ export default class Beverage extends Component {
         })
     }
 
+    handleFavorite = () => {
+        console.log(this.state.favorite)
+        fetch(baseAPI + '/favorites', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+              },
+              body: JSON.stringify({
+                  beverage_id: this.props.beverage.id,
+                  user_id: this.props.user.id
+              })
+        })
+        .then(response => response.json())
+        .then(response => {
+            if(response.errors){
+                alert(response.errors)
+            } else {
+                alert('Added beverage to favorites!')
+            }
+        })
+        }
 
     render(){
         const beverage = this.props.beverage
@@ -57,10 +81,12 @@ export default class Beverage extends Component {
                 <p>Extra Flavor: <b>{beverage ? this.props.beverage.extra_flavor : null}</b></p>
             </div>
             <div className='bevCardRight'>
+                {/* <input className='star' type='checkbox' name='favorite' value={this.state.favorite} onChange={this.handleFavorite}></input> */}
+                <img src='goldstar.png' onClick={this.handleFavorite} alt='Add to favorites' title='Add to favorites'></img>
                 <Button size='sm'>Add to Cart</Button>
                 <Button size='sm' variant='secondary' onClick={this.showModal}>Write Review</Button>
                 <Button size='sm' variant='info' onClick={this.showReviews}>Read Reviews</Button>
-                <Button size='sm'>Add to Favorites</Button>
+                {/* <Button size='sm'>Add to Favorites</Button> */}
             </div>
             <Modal show={this.state.showModal} onHide={this.handleClose}>
                 <Modal.Header>

@@ -254,7 +254,7 @@
 
 .beverageCard {
   height: 85%;
-  width: 50%;
+  width: 58%;
   display: flex;
   flex: 0 0 auto;
   flex-direction: row;
@@ -290,6 +290,7 @@
 .bevCardLeft h2 {
   margin-bottom: 15%;
   margin-top: -5%;
+  
 }
 
 .bevCardRight {
@@ -305,6 +306,21 @@ flex-direction: column;
 .bevCardRight button {
   width: 60%;
   margin: auto;
+}
+
+.bevCardRight img {
+  margin-left: 85%;
+  margin-top: -2%;
+  height: 15%;
+  width: 9%;
+  transition: 0.3s;
+}
+
+.bevCardRight img:hover {
+  cursor: pointer;
+  transform: scale(1.2);
+  border-radius: 10px;
+  transition: all .2s ease-in-out;
 }
 
 /* ACCOUNT PAGE / USER PROFILE */

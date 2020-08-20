@@ -84,8 +84,8 @@ export default class Beverage extends Component {
                 {/* <input className='star' type='checkbox' name='favorite' value={this.state.favorite} onChange={this.handleFavorite}></input> */}
                 <img src='goldstar.png' onClick={this.handleFavorite} alt='Add to favorites' title='Add to favorites'></img>
                 <Button size='sm'>Add to Cart</Button>
-                <Button size='sm' variant='secondary' onClick={this.showModal}>Write Review</Button>
-                <Button size='sm' variant='info' onClick={this.showReviews}>Read Reviews</Button>
+                <Button size='sm' variant='outline-secondary' onClick={this.showModal}>Write Review</Button>
+                <Button size='sm' variant='outline-info' onClick={this.showReviews}>Read Reviews</Button>
                 {/* <Button size='sm'>Add to Favorites</Button> */}
             </div>
             <Modal show={this.state.showModal} onHide={this.handleClose}>

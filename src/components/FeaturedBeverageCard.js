@@ -14,8 +14,8 @@ export default function FeaturedBeverageCard(props) {
             </div>
             <div className='bevCardRight'>
                 <Button size='sm'>Add to Cart</Button>
-                <Button size='sm' variant='secondary'>Read Reviews</Button>
-                <Button size='sm' variant='info'>Save for Later</Button>
+                <Button size='sm' variant='outline-secondary'>Read Reviews</Button>
+                <Button size='sm' variant='outline-info'>Save for Later</Button>
             </div>
         </div>
     )

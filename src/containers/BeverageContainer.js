@@ -77,24 +77,24 @@ export default class BeverageContainer extends Component {
                 <div className='featuredBeveragesContainer'>
                     <Carousel style={{height: '10%'}}>
                         <Carousel.Item>
-                            {this.props.recommendedBeverages ? <FeaturedBeverageCard beverage={this.props.recommendedBeverages[0]}/> : null } 
+                            <img src='fruitpouring.png'></img>
                             <Carousel.Caption>
-                            <h3>First slide label</h3>
-                            <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+                            <h3></h3>
+                            <p></p>
                             </Carousel.Caption>
                         </Carousel.Item>
                         <Carousel.Item>
-                        {this.props.recommendedBeverages ? <FeaturedBeverageCard beverage={this.props.recommendedBeverages[1]}/> : null }
+                        <img src='beverage.png'></img>
                             <Carousel.Caption>
-                            <h3>Second slide label</h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                            <h3></h3>
+                            <p></p>
                             </Carousel.Caption>
                         </Carousel.Item>
                         <Carousel.Item>
-                        {this.props.recommendedBeverages ? <FeaturedBeverageCard beverage={this.props.recommendedBeverages[2]}/> : null }
+                        <img src='redorangedrinks.png'></img>
                             <Carousel.Caption>
-                            <h3>Third slide label</h3>
-                            <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+                            <h3></h3>
+                            <p></p>
                             </Carousel.Caption>
                         </Carousel.Item>
                     </Carousel>

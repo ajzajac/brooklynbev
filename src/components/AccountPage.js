@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import Button from 'react-bootstrap/button'
 import Beverage from './Beverage'
+import FavoritesContainer from '../containers/FavoritesContainer'
 
 const baseAPI = 'http://localhost:3000'
 
@@ -9,13 +10,13 @@ export default class AccountPage extends Component {
     state = {
         allBeverages: null,
         beverageReviews: null,
-        favorites: null,
+        showFavorites: false,
     }
 
     componentDidMount(){
         this.getAllBeverages()
         this.getReviews()
-        this.getUserFavorites()
+        // this.getUserFavorites()
     }
 
     getAllBeverages = () => {
@@ -27,7 +28,7 @@ export default class AccountPage extends Component {
         })
         .then(response => response.json())
         .then(response => {
-            console.log(response)
+            // console.log(response)
             this.setState({
                 allBeverages: response
             })
@@ -84,18 +85,27 @@ export default class AccountPage extends Component {
     //     }
     // }
 
-    getFavoriteBeverages = () => {
-        this.filterUserFavorites()
+    // getFavoriteBeverages = () => {
+    //     this.filterUserFavorites()
         
+    // }
+
+    // renderFavorites = () => {
+    //     if(this.props.user && this.state.favorites !== null){
+    //         const favorites = this.filterUserFavorites()
+    //         return favorites.map(favorite => <Beverage beverage={favorite} user={this.props.user} reviews={this.state.beverageReviews} key={favorite.id} />)
+    //     }
+    // }
+
+    handleFavoritesClick = () => {
+        this.setState({
+            showFavorites: !this.state.showFavorites
+        })
     }
 
-    renderFavorites = () => {
-        if(this.props.user && this.state.favorites !== null){
-            const favorites = this.filterUserFavorites()
-            return favorites.map(favorite => <Beverage beverage={favorite} user={this.props.user} reviews={this.state.beverageReviews} key={favorite.id} />)
-        }
+    renderFavoritesContainer = () => {
+        return <FavoritesContainer />
     }
-
 
     render() {
         const user = this.props.user
@@ -107,13 +117,13 @@ export default class AccountPage extends Component {
                         <h3>{user ? this.props.user.username : null}</h3>
                         <p>{user ? this.props.user.email : null}</p>
                         <Button variant='outline-info' size='sm'>Your Cart</Button>
-                        <Button variant='outline-info' size='sm'>Favorites</Button>
+                        <Button variant='outline-info' size='sm' onClick={this.handleFavoritesClick}>Favorites</Button>
                         <Button variant='outline-info' size='sm'>Change Email</Button>
                         </div>
                     </div>
                     <div className='accountPageRight'>
                         <h3>Your Beverages</h3>
-                        {this.renderUserBeverages()}
+                        {this.state.showFavorites ? this.renderFavoritesContainer() : this.renderUserBeverages()}
                     </div>
                 </div>
             </div>

@@ -8,16 +8,23 @@ export default class Login extends Component {
         showModal: true,
     }
 
+    // componentDidMount(){
+    //   this.isLoggedIn()
+    // }
+
     handleChange = (event) => {
         this.setState({
           [event.target.name]: event.target.value
         })
       }
 
+    isLoggedIn = () => {
+      return this.props
+    }
+
     handleSubmit = (e) => {
         e.preventDefault()
 
-        
         fetch(`http://localhost:3000/login`,{
           method: "POST",
           headers: {

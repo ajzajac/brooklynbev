@@ -28,7 +28,7 @@ export default class MainContainer extends Component {
         this.getReviews()
         await new Promise(r => setTimeout(r, 500)); // using timeout to solve async recommended beverage algorithm
         this.filterUserBeverages()
-        this.getRecommendedBeverages()
+        // this.getRecommendedBeverages()
         
     }
     
@@ -86,7 +86,7 @@ export default class MainContainer extends Component {
 
       filterUserBeverages = () => {
         
-        if(this.state.allBeverages !== null){
+        if(this.state.userBeverages !== null){
          let userBeverages = this.state.allBeverages.filter(beverage => beverage.user_id === this.state.currentUser.id)
          
          this.setState({
@@ -127,7 +127,7 @@ export default class MainContainer extends Component {
             <div>
             <NavBar user={this.state.currentUser} isLoggedIn={this.state.isLoggedIn} logOut={this.logOut}/>
                 <Switch>
-                    <Route exact path='/' render={(routerProps) => <LandingPage {...routerProps}/>} />
+                    <Route exact path='/' render={(routerProps) => <LandingPage {...routerProps} user={this.state.currentUser}/>} />
                     <Route exact path='/login' render={(routerProps) => <Login setUser={this.setUser} user={this.state.currentUser} {...routerProps}/>} />
                     <Route exact path='/signup' render={(routerProps) => <Signup setUser={this.setUser} user={this.state.currentUser} {...routerProps} />} />
                     <Route exact path='/beverages' render={(routerProps) => <BeverageContainer recommendedBeverages={this.state.recommendedBeverages} beverages={this.state.allBeverages} user={this.state.currentUser} {...routerProps} />}/>

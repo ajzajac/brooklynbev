@@ -7,6 +7,7 @@ import NavBar from '../components/NavBar'
 import AccountPage from '../components/AccountPage'
 import CreateYourOwn from './CreateYourOwn'
 import BeverageContainer from './BeverageContainer'
+import LandingPage from '../components/LandingPage'
 
 const baseAPI = 'http://localhost:3000'
 
@@ -126,7 +127,7 @@ export default class MainContainer extends Component {
             <div>
             <NavBar user={this.state.currentUser} isLoggedIn={this.state.isLoggedIn} logOut={this.logOut}/>
                 <Switch>
-                    <Route exact path='/' currentUser={this.state.currentUser}/>
+                    <Route exact path='/' render={(routerProps) => <LandingPage {...routerProps}/>} />
                     <Route exact path='/login' render={(routerProps) => <Login setUser={this.setUser} user={this.state.currentUser} {...routerProps}/>} />
                     <Route exact path='/signup' render={(routerProps) => <Signup setUser={this.setUser} user={this.state.currentUser} {...routerProps} />} />
                     <Route exact path='/beverages' render={(routerProps) => <BeverageContainer recommendedBeverages={this.state.recommendedBeverages} beverages={this.state.allBeverages} user={this.state.currentUser} {...routerProps} />}/>

@@ -18,6 +18,31 @@
   color: rgb(243, 187, 138)
 }
 
+/* LANDING PAGE */
+
+.landingImage {
+  margin-left: 12%;
+  position: absolute;
+}
+
+.landingButton {
+  margin-top: 22%;
+  margin-left: -4%;
+  height: 8%;
+  width: 15%;
+  opacity: .7;
+  background-color: rgba(24,24,24, 0.924);
+  color: white;
+  position: absolute;
+  border-radius: 5px;
+}
+
+.landingPage button:hover {
+  background-color: rgb(228, 228, 228);
+  color: rgb(67, 67, 67);
+  font-weight: bold;
+}
+
 /* NAV BAR */
 
 .navBar {
@@ -427,3 +452,4 @@ text-align: left;
   margin-bottom: 3%;
   padding: 1%;
 }
+

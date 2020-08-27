@@ -3,6 +3,8 @@ import Button from 'react-bootstrap/button'
 import Beverage from './Beverage'
 import Modal from 'react-bootstrap/Modal'
 import CartItem from './CartItem'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faShoppingCart, faHeart, faEnvelope } from '@fortawesome/free-solid-svg-icons'
 
 const baseAPI = 'http://localhost:3000'
 
@@ -233,9 +235,9 @@ export default class AccountPage extends Component {
                         <div className='accountDetails'>
                         <h3>{user ? this.props.user.username : null}</h3>
                         <p>{user ? this.props.user.email : null}</p>
-                        <Button variant='outline-info' size='sm' onClick={this.handleModalShow}>Your Cart</Button>
-                        <Button variant='outline-info' size='sm' onClick={this.handleFavoritesClick}>Favorites</Button>
-                        <Button variant='outline-info' size='sm' onClick={this.clearCart}>Change Email</Button>
+                        <Button variant='outline-info' size='sm' onClick={this.handleModalShow}>Your Cart <FontAwesomeIcon icon={faShoppingCart}/></Button>
+                        <Button variant='outline-info' size='sm' onClick={this.handleFavoritesClick}>Favorites <FontAwesomeIcon icon={faHeart}/></Button>
+                        <Button variant='outline-info' size='sm' onClick={this.clearCart}>Change Email <FontAwesomeIcon icon={faEnvelope}/></Button>
                         </div>
                     </div>
                     <div className='accountPageRight'>

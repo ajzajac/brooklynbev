@@ -3,6 +3,8 @@ import { Button } from 'react-bootstrap';
 import Modal from 'react-bootstrap/Modal'
 import CreateReviewForm from './CreateReviewForm';
 import ReadReviewModalList from '../containers/ReadReviewModalList';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faPen, faBookOpen, faShoppingCart, faStar } from '@fortawesome/free-solid-svg-icons'
 
 const baseAPI = 'http://localhost:3000'
 
@@ -142,10 +144,11 @@ export default class Beverage extends Component {
                 <p>Extra Flavor: <b>{beverage ? this.props.beverage.extra_flavor : null}</b></p>
             </div>
             <div className='bevCardRight'>
-                <img src='goldstar.png' onClick={this.handleFavorite} alt='Add to favorites' title='Add to favorites'></img>
-                <Button size='sm' onClick={this.addToCart}>Add to Cart</Button>
-                <Button size='sm' variant='outline-secondary' onClick={this.showModal}>Write Review</Button>
-                <Button size='sm' variant='outline-info' onClick={this.showReviews}>Read Reviews</Button>
+                {/* <img src='goldstar.png' onClick={this.handleFavorite} alt='Add to favorites' title='Add to favorites'></img> */}
+                <FontAwesomeIcon icon={faStar} className='favoriteStar' onClick={this.handleFavorite} size='lg'/>
+                <Button size='sm' onClick={this.addToCart}>Add to Cart <FontAwesomeIcon icon={faShoppingCart}/></Button>
+                <Button size='sm' variant='outline-secondary' onClick={this.showModal}>Write Review <FontAwesomeIcon icon={faPen}/></Button>
+                <Button size='sm' variant='outline-info' onClick={this.showReviews}>Read Reviews <FontAwesomeIcon icon={faBookOpen}/></Button>
             </div>
             <Modal show={this.state.showModal} onHide={this.handleClose}>
                 <Modal.Header>

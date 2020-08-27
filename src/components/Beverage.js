@@ -13,6 +13,7 @@ export default class Beverage extends Component {
         showModal: false,
         showReviews: false,
         favorite: false,
+        userCurrentOrderList: null,
     }
 
     componentDidMount(){
@@ -47,7 +48,7 @@ export default class Beverage extends Component {
     }
 
     handleFavorite = () => {
-        console.log(this.state.favorite)
+        
         fetch(baseAPI + '/favorites', {
             method: 'POST',
             headers: {
@@ -69,6 +70,66 @@ export default class Beverage extends Component {
         })
         }
 
+    addToCart = () => {
+        const userId = this.props.user.id  
+        const currentOrder = this.props.user.current_order
+        const beverageId = this.props.beverage.id
+        const bevName = this.props.beverage.name
+        const bevFlavor = this.props.beverage.base_flavor
+
+            console.log(currentOrder)
+        if (currentOrder === null) {
+            const token = localStorage.token
+            let config4 = {
+                method: "POST",
+                headers: {
+                    'Content-Type':'application/json',
+                    "Authorization": token,
+                    'Accept':'application/json'
+                },
+                body: JSON.stringify({
+                    user_id: userId,
+                    beverage_id: beverageId,
+                })
+            }
+            
+            fetch(baseAPI + '/orders/neworder', config4)
+                .then(response => response.json())
+                .then(response => {
+                    console.log(response)
+                    this.setState({
+
+                    })
+                }) 
+        } else {
+            const token = localStorage.token
+                let config3 = {
+                    method: "POST",
+                    headers: {
+                    'Content-Type':'application/json',
+                    "Authorization": token,
+                    'Accept':'application/json'
+                    },
+                    body: JSON.stringify({
+                        order_id: currentOrder,
+                        beverage_id: beverageId,
+                        name: bevName,
+                        base_flavor: bevFlavor,
+                        })
+                }
+
+                fetch(baseAPI + '/order_items', config3)
+                    .then(response => response.json())
+                    .then(response => {
+                        console.log(this.state.userCurrentOrderList)
+                        this.setState({
+                            userCurrentOrderList: response
+                        })
+                    }) 
+                    alert("Beverage Has Been Added To Your Shopping Cart")
+            }
+        }
+
     render(){
         const beverage = this.props.beverage
     return (
@@ -81,12 +142,10 @@ export default class Beverage extends Component {
                 <p>Extra Flavor: <b>{beverage ? this.props.beverage.extra_flavor : null}</b></p>
             </div>
             <div className='bevCardRight'>
-                {/* <input className='star' type='checkbox' name='favorite' value={this.state.favorite} onChange={this.handleFavorite}></input> */}
                 <img src='goldstar.png' onClick={this.handleFavorite} alt='Add to favorites' title='Add to favorites'></img>
-                <Button size='sm'>Add to Cart</Button>
+                <Button size='sm' onClick={this.addToCart}>Add to Cart</Button>
                 <Button size='sm' variant='outline-secondary' onClick={this.showModal}>Write Review</Button>
                 <Button size='sm' variant='outline-info' onClick={this.showReviews}>Read Reviews</Button>
-                {/* <Button size='sm'>Add to Favorites</Button> */}
             </div>
             <Modal show={this.state.showModal} onHide={this.handleClose}>
                 <Modal.Header>

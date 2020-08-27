@@ -453,3 +453,29 @@ text-align: left;
   padding: 1%;
 }
 
+/* CART ITEM CARD */
+
+.cartItemCard {
+  border-bottom: 1px solid grey;
+  margin-bottom: 5%;
+  width: 100%;
+  display: block
+}
+
+.cartItemCard:last-of-type {
+  border-bottom: none;
+  margin-bottom: -1%;
+}
+
+.cartItemCard p {
+  margin-bottom: 2%;
+  width: 100%;
+}
+
+.cartItemCard p:last-of-type {
+  margin-bottom: 2%;
+}
+
+.cartItemCard button {
+  margin-bottom: 4%;
+}

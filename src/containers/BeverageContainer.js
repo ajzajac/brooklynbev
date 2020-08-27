@@ -74,7 +74,7 @@ export default class BeverageContainer extends Component {
             <div className='beveragesPage'>
             {this.state.modalShow ? <div><ReadReviewModal /> </div>: <div><h3>Here Are Some Beverages We Think You May Like</h3>
                 <div className='featuredBeveragesContainer'>
-                    <Carousel style={{height: '10%'}}>
+                    <Carousel style={{height: '15%'}}>
                         <Carousel.Item>
                             <img src='fruitpouring.png'></img>
                             <Carousel.Caption>
@@ -90,7 +90,7 @@ export default class BeverageContainer extends Component {
                             </Carousel.Caption>
                         </Carousel.Item>
                         <Carousel.Item>
-                        <img src='redorangedrinks.png'></img>
+                        <img src='redorangedrinks.png' style={{height: "150%"}}></img>
                             <Carousel.Caption>
                             <h3></h3>
                             <p></p>

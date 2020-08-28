@@ -238,10 +238,10 @@ export default class AccountPage extends Component {
                         <div className='accountDetails'>
                         <h3>{user ? this.props.user.username : null}</h3>
                         <p>{user ? this.props.user.email : null}</p>
-                        <Button variant='outline-info' size='sm' onClick={this.handleModalShow}>Your Cart <FontAwesomeIcon icon={faShoppingCart}/></Button>
-                        <Button variant='outline-info' size='sm' onClick={this.handleFavoritesClick}>Favorites <FontAwesomeIcon icon={faHeart}/></Button>
-                        <Button variant='outline-info' size='sm'>Change Email <FontAwesomeIcon icon={faEnvelope}/></Button>
-                        <Button variant='outline-info' size='sm'>Past Orders <FontAwesomeIcon icon={faArchive}/></Button>
+                        <button onClick={this.handleModalShow}>Your Cart <FontAwesomeIcon icon={faShoppingCart}/></button>
+                        <button onClick={this.handleFavoritesClick}>Favorites <FontAwesomeIcon icon={faHeart}/></button>
+                        <button >Change Email <FontAwesomeIcon icon={faEnvelope}/></button>
+                        <button >Past Orders <FontAwesomeIcon icon={faArchive}/></button>
                         </div>
                     </div>
                     <div className='accountPageRight'>

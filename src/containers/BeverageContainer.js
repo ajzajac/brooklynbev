@@ -72,18 +72,19 @@ export default class BeverageContainer extends Component {
         
         return (
             <div className='beveragesPage'>
-            {this.state.modalShow ? <div><ReadReviewModal /> </div>: <div><h3>Check out some of our beverages!</h3>
+            {this.state.modalShow ? <div><ReadReviewModal /> </div>: <div><h3>Check out some of our beverages</h3>
                 <div className='featuredBeveragesContainer'>
                     <div className='slideshowScroll'>
                         <img src='kiwisplash.png'></img> 
                         <img src='orangesplash.png'></img>
                         <img src='pomegranate.png'></img>
                         <img src='lavender.png'></img>
-                        <img src='watermelon.png'></img>
-                        <img src='raspberry.png'></img>
+                        <img src='blueberrysplash.png'></img>
                         <img src='strawberrysplash.png'></img>
                         <img src='passionfruit.png'></img>
+                        <img src='watermelon.png'></img>
                         <img src='lime.png'></img>
+                        <img src='raspberry.png'></img>
                     </div>
                 </div>
                     <div className='beveragesList'>

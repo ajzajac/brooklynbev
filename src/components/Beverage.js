@@ -145,9 +145,9 @@ export default class Beverage extends Component {
             </div>
             <div className='bevCardRight'>
                 <FontAwesomeIcon icon={faStar} className='favoriteStar' onClick={this.handleFavorite} size='lg'/>
-                <Button size='sm' onClick={this.addToCart}>Add to Cart <FontAwesomeIcon icon={faShoppingCart}/></Button>
-                <Button size='sm' variant='outline-secondary' onClick={this.showModal}>Write Review <FontAwesomeIcon icon={faPen}/></Button>
-                <Button size='sm' variant='outline-info' onClick={this.showReviews}>Read Reviews <FontAwesomeIcon icon={faBookOpen}/></Button>
+                <button size='sm' onClick={this.addToCart}>Add to Cart <FontAwesomeIcon icon={faShoppingCart}/></button>
+                <button size='sm' variant='outline-secondary' onClick={this.showModal}>Write Review <FontAwesomeIcon icon={faPen}/></button>
+                <button size='sm' variant='outline-info' onClick={this.showReviews}>Read Reviews <FontAwesomeIcon icon={faBookOpen}/></button>
             </div>
             <Modal show={this.state.showModal} onHide={this.handleClose}>
                 <Modal.Header>

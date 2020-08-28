@@ -141,10 +141,9 @@ export default class Beverage extends Component {
                 <p>Main Flavor: <b>{beverage ? this.props.beverage.base_flavor : null}</b></p>
                 <p>Accent Flavor: <b>{beverage ? this.props.beverage.secondary_flavor : null}</b></p>
                 <p>Water Type: <b>{beverage ? this.props.beverage.water_type : null}</b></p>
-                <p>Extra Flavor: <b>{beverage ? this.props.beverage.extra_flavor : null}</b></p>
+                <p>Extra Flavor: <b>{beverage.extra_flavor ? this.props.beverage.extra_flavor : "None"}</b></p>
             </div>
             <div className='bevCardRight'>
-                {/* <img src='goldstar.png' onClick={this.handleFavorite} alt='Add to favorites' title='Add to favorites'></img> */}
                 <FontAwesomeIcon icon={faStar} className='favoriteStar' onClick={this.handleFavorite} size='lg'/>
                 <Button size='sm' onClick={this.addToCart}>Add to Cart <FontAwesomeIcon icon={faShoppingCart}/></Button>
                 <Button size='sm' variant='outline-secondary' onClick={this.showModal}>Write Review <FontAwesomeIcon icon={faPen}/></Button>

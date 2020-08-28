@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
 import Button from 'react-bootstrap/button'
+import '../App.css';
 import Beverage from './Beverage'
 import Modal from 'react-bootstrap/Modal'
 import CartItem from './CartItem'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faShoppingCart, faHeart, faEnvelope } from '@fortawesome/free-solid-svg-icons'
+import { faShoppingCart, faHeart, faEnvelope, faArchive } from '@fortawesome/free-solid-svg-icons'
 
 const baseAPI = 'http://localhost:3000'
 
@@ -33,7 +34,7 @@ export default class AccountPage extends Component {
     }
 
     // componentDidUpdate = (prevProps, prevState) => {
-    //     if(prevState.orderItems !== this.state.orderItems ){
+    //     if(prevState.orderItems !==  null){
     //         this.getOrderItems()
     //     }
     // }
@@ -110,6 +111,10 @@ export default class AccountPage extends Component {
         .then(response => response.json())
         .then(response => {
             // console.log(response)
+        })
+        alert("You have succesfully checked out!")
+        this.setState({
+            showModal: false
         })
     }
 
@@ -193,12 +198,10 @@ export default class AccountPage extends Component {
         })
     }
 
-
-
     renderCartItems = () => {
         if(this.state.orderItems !== null){
             return this.state.orderItems.map(cartItem => <CartItem item={cartItem} removeFromCart={this.removeFromCart} key={cartItem.id}/>)
-        }
+        } 
     }
 
     removeItem = () => {
@@ -220,11 +223,11 @@ export default class AccountPage extends Component {
         })
         .then(response => response.json())
         .then(response => {
-            console.log(response)
+            // console.log(response)
             
         })
-        
     }
+
 
     render() {
         const user = this.props.user
@@ -237,24 +240,26 @@ export default class AccountPage extends Component {
                         <p>{user ? this.props.user.email : null}</p>
                         <Button variant='outline-info' size='sm' onClick={this.handleModalShow}>Your Cart <FontAwesomeIcon icon={faShoppingCart}/></Button>
                         <Button variant='outline-info' size='sm' onClick={this.handleFavoritesClick}>Favorites <FontAwesomeIcon icon={faHeart}/></Button>
-                        <Button variant='outline-info' size='sm' onClick={this.clearCart}>Change Email <FontAwesomeIcon icon={faEnvelope}/></Button>
+                        <Button variant='outline-info' size='sm'>Change Email <FontAwesomeIcon icon={faEnvelope}/></Button>
+                        <Button variant='outline-info' size='sm'>Past Orders <FontAwesomeIcon icon={faArchive}/></Button>
                         </div>
                     </div>
                     <div className='accountPageRight'>
-                        <h3>Your Beverages</h3>
+                        {this.state.showFavorites ? <h3>Your Favorites</h3> : <h3>Your Beverages</h3>}
                         {this.state.showFavorites ? this.renderFavorites() : this.renderUserBeverages()}
                     </div>
                 </div>
-                <Modal show={this.state.showModal} onHide={this.handleModalShow}>
+                <Modal show={this.state.showModal} onHide={this.handleModalShow} className="cartModal">
                 <Modal.Header>
-                <Modal.Title style={{}}>Your Cart</Modal.Title>
-                     <p>Order ID # {user ? this.props.user.current_order : null}</p> 
+                <Modal.Title>Your Cart</Modal.Title>
+                     <p>Order ID # <b> {user ? this.props.user.current_order : null}</b></p> 
                 </Modal.Header>
                 <Modal.Body>
                     {this.renderCartItems()}
                 </Modal.Body>
-                <Modal.Footer style={{margin: 'auto'}}>
-                <Button variant='primary' size='sm' onClick={this.clearCart}>Checkout</Button>
+                <Modal.Footer className='cartModalFooter'>
+                <p>Order Total: <b>$0.00</b></p>
+                <Button variant='primary' size='sm' onClick={this.clearCart}><b>Checkout</b></Button>
                 <Button variant="secondary"  size='sm' onClick={this.handleModalShow}>
                     Close
                 </Button>

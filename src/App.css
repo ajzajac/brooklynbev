@@ -52,6 +52,7 @@
   border-bottom: solid;
   border-width: 1px;
   border-style: outset;
+  box-shadow: 0px 0px 10px rgb(199, 199, 199);
 }
 
 .navBar li {
@@ -67,6 +68,11 @@
   float: left;
   font-size: large;
   padding-left: 2%;
+  text-shadow: 0px 1px 0px #795ef0,
+                 -1px 1px 0px #795ef0,
+                 -2px 2px 0px #20fafa;
+
+  
 }
 
 .navBar ul {
@@ -82,7 +88,8 @@
 }
 
 .navBar a:hover {
-  color: rgb(167, 167, 167)
+  color: #2e00fa;
+  text-decoration: none
 }
 
 
@@ -90,6 +97,8 @@
   text-decoration: none;
   color: black
 }
+
+
 
 /* LOGIN FORM / LOGIN */
 
@@ -106,11 +115,13 @@
 
 .loginModalBody {
   margin: auto;
+  font-family: 'Montserrat', sans-serif;
 }
 
 .loginModalBody p {
   margin-top: 5%;
   margin-bottom: -2%;
+  font-family: 'Montserrat', sans-serif;
 }
 
 /* SIGNUP FORM / SIGNUP */
@@ -129,15 +140,18 @@
 /* CREATE BEVERAGE /  BEVERAGE FORM PAGE */
 
 .createBeveragePage h2 {
-  margin-top: 1%
+  margin-top: 1%;
+  font-family: 'Montserrat', sans-serif;
 }
 
 .beverageCreateForm {
   padding-bottom: 5%;
+  font-family: 'Montserrat', sans-serif;
 }
 
 .beverageCreateForm p {
   font-size: medium;
+  font-family: 'Montserrat', sans-serif;
 }
 
 .beverageCreateForm input {
@@ -149,6 +163,7 @@
 .beverageCreateForm button {
   display: block;
   margin: auto;
+  font-family: 'Montserrat', sans-serif;
 }
 
 .beverageCreateForm button:last-of-type {
@@ -165,22 +180,25 @@
   border: rgb(219, 219, 219);
   border-width: 1px;
   border-style: solid;
+  font-family: 'Montserrat', sans-serif;
 }
 
 .createBevFormModal {
   margin: auto;
   text-align: center;
+  font-family: 'Montserrat', sans-serif;
   
 }
 
 .createBevFormModal form {
   margin: auto;
+  font-family: 'Montserrat', sans-serif;
 }
 
 /* BEVERAGE INSTRUCTIONS / CREATE YOUR OWN */
 
 .beverageInstructionsPage {
-  
+  font-family: 'Montserrat', sans-serif;
 }
 
 .beverageCardsList {
@@ -197,8 +215,10 @@
   padding: 1%;
   margin: 1%;
   font-size: medium;
+  background-color: rgb(235, 235, 235);
   border-radius: 5px;
-  transition: 0.3s
+  transition: 0.3s;
+  font-family: 'Montserrat', sans-serif;
 }
 
 .instructionsCard p:last-of-type {
@@ -226,6 +246,7 @@
   width: 40%;
   padding: 2%;
   margin: auto;
+  background-color: rgb(235, 235, 235);
   margin-bottom: 7%;
   border-radius: 5px;
   box-shadow: 0px 0px 5px rgb(136, 136, 136);
@@ -243,9 +264,9 @@
 
 /* BEVERAGES DISPLAY PAGE */
 
-.beveragesPage h2 {
+.beveragesPage h3 {
   margin-bottom: 2%;
-  margin-top: 2%;
+  margin-top: 1%;
 }
 
 .featuredBeveragesContainer {
@@ -262,6 +283,7 @@
 
 .beveragesPage {
   margin: auto;
+  font-family: 'Montserrat', sans-serif;
 }
 
 .beveragesList {
@@ -285,18 +307,20 @@
   flex-direction: row;
   border-radius: 5px;
   background-color: rgb(238, 238, 238);
-  box-shadow: 0px 0px 5px 0px  rgba(183, 183, 183);
+  box-shadow: 0px 0px 10px 0px  rgba(183, 183, 183);
   transition: 0.3s;
   margin: auto;
   margin-right: 6%;
   overflow-y: auto;
   padding: 30px;
   margin-bottom: 2%;
+  font-family: 'Montserrat', sans-serif;
 }
 
 .beverageCard h2 {
   font-size: x-large;
-  margin-bottom: 7%;
+  margin-bottom: 5%;
+  font-family: 'Montserrat', sans-serif;
 }
 
 .beverageCard:hover {
@@ -315,13 +339,17 @@
 .bevCardLeft h2 {
   margin-bottom: 15%;
   margin-top: -5%;
-  
+  font-family: 'Montserrat', sans-serif;
+  text-shadow: -1px 1px 0px #795ef0,
+                 -2px 2px 0px #6eacfd,
+                 -3px 3px 0px #20fafa;
 }
 
 .bevCardRight {
 width: 60%;
 display: flex;
 flex-direction: column;
+font-family: 'Montserrat', sans-serif;
 }
 
 .bevCardRight button:first-of-type {
@@ -331,11 +359,11 @@ flex-direction: column;
 .bevCardRight button {
   width: 60%;
   margin: auto;
+  box-shadow: 0px 0px 2px grey;
 }
 
 .favoriteStar {
-  margin-left: 85%;
-  margin-top: -2%;
+  margin-left: auto;
   height: 15%;
   width: 9%;
   transition: 0.3s;
@@ -346,10 +374,15 @@ flex-direction: column;
   cursor: pointer;
   transform: scale(1.3);
   border-radius: 10px;
+  color: rgb(250, 140, 67);
   transition: all .2s ease-in-out;
 }
 
 /* ACCOUNT PAGE / USER PROFILE */
+
+.accountPage {
+  font-family: 'Montserrat', sans-serif;
+}
 
 .accountPage h2 {
  margin-top: 1%;
@@ -367,6 +400,7 @@ flex-direction: column;
   padding: 5px;
   background-color: rgb(235, 235, 235);
   box-shadow: 0px 0px 5px black;
+  font-family: 'Montserrat', sans-serif;
 }
 
 .accountPageLeft {
@@ -384,6 +418,7 @@ margin-right: -15%;
   border-radius: 5px;
   background-color: rgb(248, 248, 248);
   box-shadow: 0px 0px 5px black;
+  font-family: 'Montserrat' sans-serif;
 }
 
 .accountPageLeft button {
@@ -397,7 +432,8 @@ margin-right: -15%;
 }
 
 .accountDetails h3 {
-  margin-top: -10%
+  margin-top: -10%;
+  font-family: 'Montserrat' sans-serif;
 }
 
 .accountPageRight {
@@ -407,7 +443,15 @@ margin-right: -15%;
   margin-bottom: 2%;
   margin-left: 10%;
   width: 75%;
+  font-family: 'Montserrat' sans-serif;
 }
+
+/* CART MODAL */
+
+.cartModal {
+  font-family: 'Montserrat', sans-serif;
+}
+
 
 /* CREATE REVIEW MODAL */
 
@@ -415,15 +459,18 @@ margin-right: -15%;
   display: block;
   margin: auto;
   text-align: center;
+  font-family: 'Montserrat', sans-serif;
 }
 
 .reviewModalForm form {
   margin: auto;
+  font-family: 'Montserrat', sans-serif;
 }
 
 .reviewModalForm p {
   margin-bottom: -1%;
   padding-bottom: 2%;
+  font-family: 'Montserrat', sans-serif;
 }
 
 .reviewModalForm input {
@@ -432,12 +479,17 @@ margin-right: -15%;
   margin-bottom: 2%;
 }
 
-.reviewCreateForm input:first-child {
-  width: 40%;
+.reviewModalForm input:first-of-type {
+  width: 80%;
+}
+
+.reviewModalForm input:last-of-type {
+  width: 10%;
 }
 
 .reviewCreateForm button{
   margin-top: 2%;
+  font-weight: bold;
 }
 
 /* READ REVIEW POPOUT MODAL */
@@ -448,11 +500,13 @@ margin-right: -15%;
   padding: 2%;
   margin-bottom: 2%;
   overflow: auto;
+  font-family: 'Montserrat', sans-serif;
 }
 
 .reviewCard p {
   margin-bottom: 3%;
   padding: 1%;
+  font-family: 'Montserrat', sans-serif;
 }
 
 /* CART ITEM CARD */
@@ -461,7 +515,12 @@ margin-right: -15%;
   border-bottom: 1px solid grey;
   margin-bottom: 5%;
   width: 100%;
-  display: block
+  display: flex;
+  
+}
+
+.cartItemCard:hover {
+  background-color: rgba(172, 172, 172, 0);
 }
 
 .cartItemCard:last-of-type {
@@ -470,14 +529,23 @@ margin-right: -15%;
 }
 
 .cartItemCard p {
-  margin-bottom: 2%;
+  margin-bottom: 4%;
   width: 100%;
 }
 
 .cartItemCard p:last-of-type {
-  margin-bottom: 2%;
+  margin-bottom: 10%;
 }
 
 .cartItemCard button {
   margin-bottom: 4%;
+}
+
+.cartModalFooter p:first-of-type {
+float: left;
+margin-right: auto;
+}
+
+.cartItemCardRight {
+  margin-left: auto;
 }

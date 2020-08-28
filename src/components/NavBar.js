@@ -5,7 +5,7 @@ export default function NavBar(props) {
     return (
         <div className='navBar'>
                 <ul>
-                    <li><a href='/'>Brooklyn Bev</a></li>
+                    <li><a href='/'><b>Brooklyn Bev</b></a></li>
                     <li><a href='/beverages'>Beverages</a></li>
                     {/* <li><a href='/shop'>Shop</a></li> */}
                     <li><a href='/createyourown'>Create Your Own</a></li>

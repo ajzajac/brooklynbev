@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import Button from 'react-bootstrap/Button'
 import BeverageReview from '../components/BeverageReview'
 
 export default class ReadReviewModalList extends Component {

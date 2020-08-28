@@ -22,10 +22,15 @@ export default function CartItem(props) {
 
     return (
         <div className='cartItemCard'>
-            <p>Beverage: <b>{item ? props.item.name : null}</b></p>
-            <p>Flavor: <b>{item ? props.item.base_flavor : null}</b></p>
-             <p>Item price: <b>{item ? props.item.item_price : null}$</b></p>
-            <Button size='sm' variant='outline-danger' onClick={remove}>Remove From Cart</Button>
+            <div className='cartItemCardLeft'>
+                <p>Beverage: <b>{item ? props.item.name : null}</b></p>
+                <p>Flavor: <b>{item ? props.item.base_flavor : null}</b></p>
+                <p>Item price: <b>${item ? props.item.item_price : null}</b></p>
+             </div>
+             <div className='cartItemCardRight'>
+                 <Button size='sm' variant='outline-danger' onClick={remove}>Remove From Cart</Button>
+             </div>
+            
         </div>
     )
 }

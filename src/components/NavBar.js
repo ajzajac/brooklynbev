@@ -8,10 +8,10 @@ export default function NavBar(props) {
         <div className='navBar'>
                 <ul>
                     <li><a href='/'><b>Brooklyn Bev</b></a></li>
-                    <li><a href='/beverages'> Beverages</a></li>
+                    <li><a href='/beverages'> beverages</a></li>
                     {/* <li><a href='/shop'>Shop</a></li> */}
-                    <li><a href='/createyourown'>Create Your Own</a></li>
-                    {!props.user? <li> <a href='/login'>Login</a> </li> : <><li><a href='/profile'>My Account</a></li>  <li> <a href='/login' onClick={props.logOut}>Logout</a></li></>}
+                    <li><a href='/createyourown'>create your own</a></li>
+                    {!props.user? <li> <a href='/login'>login</a> </li> : <><li><a href='/profile'>my account</a></li>  <li> <a href='/login' onClick={props.logOut}>logout</a></li></>}
                     <FontAwesomeIcon icon={faShoppingCart}/>
                 </ul>
         </div>

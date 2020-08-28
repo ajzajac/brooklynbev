@@ -28,9 +28,9 @@ export default function BeverageInstructions(props) {
                 </div>
             </div>
             <div className='beverageInstructionsButton'>
-                    <Button variant="primary" onClick={() => props.showModal()}>
+                    <button variant="primary" onClick={() => props.showModal()}>
                         Create Your Own Beverage!
-                    </Button> 
+                    </button> 
                     <p>If you're interested, give it a shot here!</p>
             </div>
         </div>

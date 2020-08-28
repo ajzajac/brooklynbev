@@ -72,35 +72,24 @@ export default class BeverageContainer extends Component {
         
         return (
             <div className='beveragesPage'>
-            {this.state.modalShow ? <div><ReadReviewModal /> </div>: <div><h3>Here Are Some Beverages We Think You May Like</h3>
+            {this.state.modalShow ? <div><ReadReviewModal /> </div>: <div><h3>Check out some of our beverages!</h3>
                 <div className='featuredBeveragesContainer'>
-                    <Carousel style={{height: '15%'}}>
-                        <Carousel.Item>
-                            <img src='fruitpouring.png'></img>
-                            <Carousel.Caption>
-                            <h3></h3>
-                            <p></p>
-                            </Carousel.Caption>
-                        </Carousel.Item>
-                        <Carousel.Item>
-                        <img src='beverage.png'></img>
-                            <Carousel.Caption>
-                            <h3></h3>
-                            <p></p>
-                            </Carousel.Caption>
-                        </Carousel.Item>
-                        <Carousel.Item>
-                        <img src='redorangedrinks.png' style={{height: "150%"}}></img>
-                            <Carousel.Caption>
-                            <h3></h3>
-                            <p></p>
-                            </Carousel.Caption>
-                        </Carousel.Item>
-                    </Carousel>
+                    <div className='slideshowScroll'>
+                        <img src='kiwisplash.png'></img> 
+                        <img src='orangesplash.png'></img>
+                        <img src='pomegranate.png'></img>
+                        <img src='lavender.png'></img>
+                        <img src='watermelon.png'></img>
+                        <img src='raspberry.png'></img>
+                        <img src='strawberrysplash.png'></img>
+                        <img src='passionfruit.png'></img>
+                        <img src='lime.png'></img>
+                    </div>
                 </div>
                     <div className='beveragesList'>
-                        {this.renderBeverages()}
-                    </div> </div> }
+                         {this.renderBeverages()}
+                    </div> 
+                    </div> }
             </div>
         )
     }

@@ -7,7 +7,7 @@ export default function NavBar(props) {
     return (
         <div className='navBar'>
                 <ul>
-                    <li><a href='/'><b>Brooklyn Bev</b></a></li>
+                    <li><a href='/' style={{color: 'rgba(255, 255, 255, 0.801)'}}><b>Brooklyn Bev</b></a></li>
                     <li><a href='/beverages'> beverages</a></li>
                     {/* <li><a href='/shop'>Shop</a></li> */}
                     <li><a href='/createyourown'>create your own</a></li>

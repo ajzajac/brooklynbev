@@ -7,7 +7,7 @@
   top: 0;
   bottom: 0;
   position: absolute;
-  background: linear-gradient(150deg, #ffba6a9b, #fb909e94, #ff97359d, #ffd17b88, #fb8d79cc, #f865388a, #ff768871, #ff97c877, #ffa734d3);
+  background: linear-gradient(150deg, #fa0f37ca, #ff792063, #fd7a00ab, #fbbb45b6, #ff674ca6, #f865388a, #ac45017e, #ffa60078, #ffa73486);
   background-size: 1800% 1800%;
   overflow-y: scroll;
   -webkit-animation: rainbow 19s ease infinite;
@@ -73,6 +73,16 @@
   /* box-shadow: 30px 5px 25px rgba(255, 209, 83, 0.397); */
 }
 
+.navBar li:first-of-type {
+  float: left;
+  font-size: x-large;
+  padding-left: 2%;
+  color: rgba(255, 255, 255, 0.801);
+  text-shadow: 0px 0px 4px #ffffff;
+  font-family: 'Rock Salt', cursive;
+  margin-bottom: -1%;
+}
+
 .navBar li {
   display: inline;
   color: white;
@@ -80,15 +90,6 @@
   padding-left: 1%;
   padding-right: 1%;
   text-decoration: none;
-}
-
-.navBar li:first-of-type {
-  float: left;
-  font-size: x-large;
-  padding-left: 2%;
-  text-shadow: 0px 1px 5px #ffffffd2;
-  font-family: 'Rock Salt', cursive;
-  margin-bottom: -1%
 }
 
 .navBar ul {
@@ -104,8 +105,9 @@
 }
 
 .navBar a:hover {
-  text-shadow:0px 1px 1px #ffffffd2;
-  text-decoration: none
+  text-shadow:0px 0px 2px #ffffffd5;
+  text-decoration: none;
+  color: rgba(255, 255, 255, 0.856);
 }
 
 
@@ -113,7 +115,6 @@
   text-decoration: none;
   color: black;
 }
-
 
 
 /* LOGIN FORM / LOGIN */
@@ -442,7 +443,7 @@
 .beverageCard:hover {
   transform: scale(1.05);
   border-radius: 10px;
-  transition: all .2s ease-in-out;
+  transition: all .3s ease-in-out;
 }
 
 .bevCardLeft {

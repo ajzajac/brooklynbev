@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import Beverage from '../components/Beverage'
 import Carousel from 'react-bootstrap/Carousel'
 import ReadReviewModal from './ReadReviewModalList'
+import { motion } from 'framer-motion'
 
 const baseAPI = 'http://localhost:3000'
 
@@ -69,29 +70,58 @@ export default class BeverageContainer extends Component {
 
 
     render() {
-        
+        const container = {
+            hidden: { opacity: 0 },
+            show: {
+              opacity: 1,
+              transition: {
+                  staggerChildren: .5,
+                  ease: "easeIn", 
+                  duration: 1,
+    
+              }
+            }
+          }
+
+          const container2 = {
+            hidden: { opacity: 0 },
+            show: {
+              opacity: 1,
+              transition: {
+                  staggerChildren: 3,
+                  ease: "easeIn", 
+                  duration: 1,
+    
+              }
+            }
+          }
+    
+          const item = {
+            hidden: { opacity: 0 },
+            show: { opacity: 1 }
+          }
         return (
-            <div className='beveragesPage'>
+            <motion.div variants={container} initial='hidden' animate='show' className='beveragesPage'>
             {this.state.modalShow ? <div><ReadReviewModal /> </div>: <div><h3>Check out some of our beverages</h3>
                 <div className='featuredBeveragesContainer'>
-                    <div className='slideshowScroll'>
-                        <img src='kiwisplash.png'></img> 
-                        <img src='orangesplash.png'></img>
-                        <img src='pomegranate.png'></img>
-                        <img src='lavender.png'></img>
-                        <img src='blueberrysplash.png'></img>
-                        <img src='strawberrysplash.png'></img>
-                        <img src='passionfruit.png'></img>
-                        <img src='watermelon.png'></img>
-                        <img src='lime.png'></img>
-                        <img src='raspberry.png'></img>
-                    </div>
+                    <motion.div variants={container2} initial='hidden' animate='show' className='slideshowScroll'>
+                        <motion.img variants={item} src='kiwisplash.png'></motion.img> 
+                        <motion.img variants={item} src='orangesplash.png'></motion.img>
+                        <motion.img variants={item} src='pomegranate.png'></motion.img>
+                        <motion.img variants={item} src='lavender.png'></motion.img>
+                        <motion.img variants={item} src='blueberrysplash.png'></motion.img>
+                        <motion.img variants={item} src='strawberrysplash.png'></motion.img>
+                        <motion.img variants={item} src='passionfruit.png'></motion.img>
+                        <motion.img variants={item} src='watermelon.png'></motion.img>
+                        <motion.img variants={item} src='lime.png'></motion.img>
+                        <motion.img variants={item} src='raspberry.png'></motion.img>
+                    </motion.div>
                 </div>
                     <div className='beveragesList'>
                          {this.renderBeverages()}
                     </div> 
                     </div> }
-            </div>
+            </motion.div>
         )
     }
 }

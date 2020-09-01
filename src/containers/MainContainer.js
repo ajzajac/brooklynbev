@@ -8,6 +8,7 @@ import AccountPage from '../components/AccountPage'
 import CreateYourOwn from './CreateYourOwn'
 import BeverageContainer from './BeverageContainer'
 import LandingPage from '../components/LandingPage'
+import { CSSTransition, TransitionGroup } from 'react-transition-group'
 
 const baseAPI = 'http://localhost:3000'
 
@@ -122,19 +123,19 @@ export default class MainContainer extends Component {
     }
 
 
-    render() {
-       
+    render() { 
+        console.log(this.routerProps)
         return (
             <div>
-            <NavBar user={this.state.currentUser} isLoggedIn={this.state.isLoggedIn} logOut={this.logOut}/>
-                <Switch>
-                    <Route exact path='/' render={(routerProps) => <LandingPage {...routerProps} user={this.state.currentUser}/>} />
-                    <Route exact path='/login' render={(routerProps) => <Login setUser={this.setUser} user={this.state.currentUser} {...routerProps}/>} />
-                    <Route exact path='/signup' render={(routerProps) => <Signup setUser={this.setUser} user={this.state.currentUser} {...routerProps} />} />
-                    <Route exact path='/beverages' render={(routerProps) => <BeverageContainer recommendedBeverages={this.state.recommendedBeverages} beverages={this.state.allBeverages} user={this.state.currentUser} {...routerProps} />}/>
-                    <Route exact path='/profile' render={(routerProps) => <AccountPage user={this.state.currentUser} allBeverages={this.state.allBeverages} reviews={this.state.beverageReviews} isLoggedIn={this.state.isLoggedIn} {...routerProps} />}/>
-                    <Route exact path='/createyourown' render={(routerProps) => <CreateYourOwn user={this.state.currentUser} {...routerProps} />}/>
-                </Switch>
+                 <NavBar user={this.state.currentUser} isLoggedIn={this.state.isLoggedIn} logOut={this.logOut}/>
+                        <Switch>
+                            <Route exact path='/' render={(routerProps) => <LandingPage {...routerProps} user={this.state.currentUser}/>} />
+                            <Route exact path='/login' render={(routerProps) => <Login setUser={this.setUser} user={this.state.currentUser} {...routerProps}/>} />
+                            <Route exact path='/signup' render={(routerProps) => <Signup setUser={this.setUser} user={this.state.currentUser} {...routerProps} />} />
+                            <Route exact path='/beverages' render={(routerProps) => <BeverageContainer recommendedBeverages={this.state.recommendedBeverages} beverages={this.state.allBeverages} user={this.state.currentUser} {...routerProps} />}/>
+                            <Route exact path='/profile' render={(routerProps) => <AccountPage user={this.state.currentUser} allBeverages={this.state.allBeverages} reviews={this.state.beverageReviews} isLoggedIn={this.state.isLoggedIn} {...routerProps} />}/>
+                            <Route exact path='/createyourown' render={(routerProps) => <CreateYourOwn user={this.state.currentUser} {...routerProps} />}/>
+                        </Switch>
             </div>
         )
     }

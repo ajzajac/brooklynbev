@@ -6,6 +6,7 @@ import Modal from 'react-bootstrap/Modal'
 import CartItem from './CartItem'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faShoppingCart, faHeart, faEnvelope, faArchive } from '@fortawesome/free-solid-svg-icons'
+import { motion } from 'framer-motion'
 
 const baseAPI = 'http://localhost:3000'
 
@@ -20,7 +21,7 @@ export default class AccountPage extends Component {
         userCart: null,
         showModal: false,
         orderItems: null,
-
+        isVisible: false
     }
 
     async componentDidMount(){
@@ -28,6 +29,7 @@ export default class AccountPage extends Component {
         this.getReviews()
         this.getFavorites()
         this.getOrders()
+        this.isVisible()
         await new Promise(r => setTimeout(r, 200));
         this.getOrderItems()
         this.filterUserCart()
@@ -38,6 +40,12 @@ export default class AccountPage extends Component {
     //         this.getOrderItems()
     //     }
     // }
+
+    isVisible = () => {
+        this.setState({
+            isVisible: !this.state.isVisible
+        })
+    }
 
     getAllBeverages = () => {
         fetch(baseAPI + '/beverages', {
@@ -231,8 +239,20 @@ export default class AccountPage extends Component {
 
     render() {
         const user = this.props.user
+        const container = {
+            hidden: { opacity: 0 },
+            show: {
+              opacity: 1,
+              transition: {
+                  staggerChildren: .6,
+                  ease: "easeIn", 
+                  duration: 1,
+
+              }
+            }
+          }
         return (
-            <div className="accountPage">
+            <motion.div variants={container} initial='hidden' animate='show' className="accountPage">
                 <div className='accountPageContainer'>
                     <div className='accountPageLeft'>
                         <div className='accountDetails'>
@@ -244,10 +264,11 @@ export default class AccountPage extends Component {
                         <button >Past Orders <FontAwesomeIcon icon={faArchive}/></button>
                         </div>
                     </div>
-                    <div className='accountPageRight'>
+                    <motion.div  variants={container} initial="hidden" animate='show' className='accountPageRight'>
                         {this.state.showFavorites ? <h3>Your Favorites</h3> : <h3>Your Beverages</h3>}
+        
                         {this.state.showFavorites ? this.renderFavorites() : this.renderUserBeverages()}
-                    </div>
+                    </motion.div>
                 </div>
                 <Modal show={this.state.showModal} onHide={this.handleModalShow} className="cartModal">
                 <Modal.Header>
@@ -265,7 +286,7 @@ export default class AccountPage extends Component {
                 </Button>
                 </Modal.Footer>
             </Modal>
-            </div>
+            </motion.div>
         )
     }
 }

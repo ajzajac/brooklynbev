@@ -52,7 +52,7 @@ export default class BeverageContainer extends Component {
 
     renderBeverages = () => {
         if(this.props.beverages !== null){
-           return this.props.beverages.map(beverage => <Beverage beverage={beverage} reviews={this.state.beverageReviews} user={this.props.user} key={beverage.id}/>)
+           return this.props.beverages.map(beverage => <Beverage beverage={beverage} reviews={this.state.beverageReviews} user={this.props.user} key={beverage.id}/>).reverse()
         }
     }
 
@@ -88,10 +88,9 @@ export default class BeverageContainer extends Component {
             show: {
               opacity: 1,
               transition: {
-                  staggerChildren: 3,
+                  staggerChildren: 2,
                   ease: "easeIn", 
                   duration: 1,
-    
               }
             }
           }

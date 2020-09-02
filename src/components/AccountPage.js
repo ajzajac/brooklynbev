@@ -150,7 +150,7 @@ export default class AccountPage extends Component {
     renderUserBeverages = () => {
         if(this.props.user && this.state.allBeverages !== null){
             const beverages = this.filterUserBeverages()
-           return beverages.map(beverage => <Beverage beverage={beverage} user={this.props.user} reviews={this.state.beverageReviews} key={beverage.id}/>)
+           return beverages.map(beverage => <Beverage beverage={beverage} user={this.props.user} reviews={this.state.beverageReviews} key={beverage.id}/>).reverse()
         }
     }
 
@@ -208,7 +208,7 @@ export default class AccountPage extends Component {
 
     renderCartItems = () => {
         if(this.state.orderItems !== null){
-            return this.state.orderItems.map(cartItem => <CartItem item={cartItem} removeFromCart={this.removeFromCart} key={cartItem.id}/>)
+            return this.state.orderItems.map(cartItem => <CartItem item={cartItem} removeFromCart={this.removeFromCart} key={cartItem.id}/>).reverse()
         } 
     }
 
@@ -256,7 +256,7 @@ export default class AccountPage extends Component {
                 <div className='accountPageContainer'>
                     <div className='accountPageLeft'>
                         <div className='accountDetails'>
-                        <h3>{user ? this.props.user.username : null}</h3>
+                        <h3><b>{user ? this.props.user.username : null}</b></h3>
                         <p>{user ? this.props.user.email : null}</p>
                         <button onClick={this.handleModalShow}>Your Cart <FontAwesomeIcon icon={faShoppingCart}/></button>
                         <button onClick={this.handleFavoritesClick}>Favorites <FontAwesomeIcon icon={faHeart}/></button>
@@ -277,6 +277,7 @@ export default class AccountPage extends Component {
                 </Modal.Header>
                 <Modal.Body>
                     {this.renderCartItems()}
+                    
                 </Modal.Body>
                 <Modal.Footer className='cartModalFooter'>
                 <p>Order Total: <b>$0.00</b></p>

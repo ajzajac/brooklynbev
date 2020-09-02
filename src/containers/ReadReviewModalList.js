@@ -5,7 +5,7 @@ export default class ReadReviewModalList extends Component {
 
 renderReviews = () => {
     if(this.props.beverageReviews !== null){
-        return this.props.beverageReviews.map(review => <BeverageReview review={review} key={review.id}/>)
+        return this.props.beverageReviews.map(review => <BeverageReview review={review} key={review.id}/>).reverse()
     }
 }
 

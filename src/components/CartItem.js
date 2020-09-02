@@ -12,7 +12,10 @@ export default function CartItem(props) {
                 'Content-Type': 'application/json',
                 'Authorization': token,
                 'Accept': 'application/json',
-              }
+              },
+              body: JSON.stringify({
+                  order_id: props.orderId
+              })
         })
         .then(response => response.json())
         .then(response => {

@@ -31,7 +31,7 @@ export default function BeverageInstructions(props) {
                 </motion.div>
                 <motion.div variants={item} className='instructionsCard'>
                     <p>First, start by selecting your base flavor. This will be the main flavor component of your beverage.</p>
-                    <p>We like a big flavor here like a berry or any fruit.</p>
+                    <p>We like a big flavor here like a berry, a melon or any fruit.</p>
                     <img src='strawberry.png'/>
                 </motion.div>
                 <motion.div variants={item} className='instructionsCard'>

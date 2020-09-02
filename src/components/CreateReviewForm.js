@@ -50,7 +50,13 @@ export default class CreateReviewForm extends Component {
                     <p>Review: </p>
                     <input name="reviewDescription" value={this.state.reviewDescription} onChange={this.handleChange} placeholder='Write Your Review Here' />
                     <p>Rating: </p>
-                    <input name="reviewRating" value={this.state.reviewRating} onChange={this.handleChange} placeholder='1 - 5' />
+                    <select name="reviewRating"  id='reviewRating' value={this.state.reviewRating} onChange={this.handleChange}>
+                        <option value='1'>1</option>
+                        <option value='2'>2</option>
+                        <option value='3'>3</option>
+                        <option value='4'>4</option>
+                        <option value='5'>5</option>
+                        </select>
                     <Button size='sm' variant='primary' type='submit'>Submit</Button>
                 </form>
             </div>

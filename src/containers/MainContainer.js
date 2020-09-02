@@ -26,10 +26,8 @@ export default class MainContainer extends Component {
         this.autoLogin()
         this.getBeverages()
         this.getReviews()
-        await new Promise(r => setTimeout(r, 500)); // using timeout to solve async recommended beverage algorithm
+        await new Promise(r => setTimeout(r, 500)); 
         this.filterUserBeverages()
-        // this.getRecommendedBeverages()
-        
     }
     
     getBeverages = () => {
@@ -41,7 +39,6 @@ export default class MainContainer extends Component {
         })
         .then(response => response.json())
         .then(response => {
-            // console.log(response)
             this.setState({
                 allBeverages: response
             })
@@ -75,7 +72,6 @@ export default class MainContainer extends Component {
           })
           .then(res => res.json())
           .then(response => {
-            // console.log(response.user)
             this.setState({
               currentUser: response.user,
               isLoggedIn: true,
@@ -85,25 +81,22 @@ export default class MainContainer extends Component {
       }
 
       filterUserBeverages = () => {
-        
         if(this.state.userBeverages !== null){
          let userBeverages = this.state.allBeverages.filter(beverage => beverage.user_id === this.state.currentUser.id)
-         
          this.setState({
              userBeverages: userBeverages
          })
         }
      }
 
-    getRecommendedBeverages = () => {
-        if(this.state.allBeverages !== null){
-            var recommendedBeverages = this.state.allBeverages[Math.floor(Math.random() * this.state.allBeverages.length - 1)];
-            // console.log(recommendedBeverages)
-            this.setState({
-                recommendedBeverages: recommendedBeverages
-            })
-        }
-    }
+    // getRecommendedBeverages = () => {
+    //     if(this.state.allBeverages !== null){
+    //         var recommendedBeverages = this.state.allBeverages[Math.floor(Math.random() * this.state.allBeverages.length - 1)];
+    //         this.setState({
+    //             recommendedBeverages: recommendedBeverages
+    //         })
+    //     }
+    // }
 
     getReviews = () => {
         fetch(baseAPI + '/reviews', {
@@ -114,7 +107,6 @@ export default class MainContainer extends Component {
         })
         .then(response => response.json())
         .then(response => {
-            // console.log(response)
             this.setState({
                 beverageReviews: response
             })
@@ -123,7 +115,6 @@ export default class MainContainer extends Component {
 
 
     render() { 
-        console.log(this.routerProps)
         return (
             <div>
                  <NavBar user={this.state.currentUser} isLoggedIn={this.state.isLoggedIn} logOut={this.logOut}/>

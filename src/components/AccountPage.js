@@ -7,6 +7,7 @@ import CartItem from './CartItem'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faShoppingCart, faHeart, faEnvelope, faArchive } from '@fortawesome/free-solid-svg-icons'
 import { motion } from 'framer-motion'
+import PastOrderItem from './PastOrderItem';
 
 const baseAPI = 'http://localhost:3000'
 
@@ -21,7 +22,10 @@ export default class AccountPage extends Component {
         userCart: null,
         showModal: false,
         orderItems: null,
-        isVisible: false
+        isVisible: false,
+        cartTotalPrice: null,
+        showPastOrders: false,
+        userPastOrders: null,
     }
 
     async componentDidMount(){
@@ -29,10 +33,13 @@ export default class AccountPage extends Component {
         this.getReviews()
         this.getFavorites()
         this.getOrders()
-        this.isVisible()
-        await new Promise(r => setTimeout(r, 200));
+        this.isVisible() 
+        await new Promise(r => setTimeout(r, 500));
         this.getOrderItems()
         this.filterUserCart()
+        this.getCurrentOrderPrice()
+        
+       
     }
 
     // componentDidUpdate = (prevProps, prevState) => {
@@ -88,7 +95,6 @@ export default class AccountPage extends Component {
         .then(response => response.json())
         .then(response => {
             let orderList = response.order_items.filter(item => item.order_id === this.props.user.current_order)
-            // console.log(orderList)
             this.setState({
                 orderItems: orderList
             })
@@ -98,9 +104,10 @@ export default class AccountPage extends Component {
     filterUserCart = () => {
         if(this.state.orders !== null){
             let userCart = this.state.orders.filter(order => order.user_id === this.props.user.id)
-            // console.log(userCart)
             this.setState({
-                userCart: userCart
+                userCart: userCart[userCart.length-1],
+                userPastOrders: userCart,
+                cartTotalPrice: userCart[userCart.length-1].total_price.toFixed(2)
             })
         }
     }
@@ -118,7 +125,6 @@ export default class AccountPage extends Component {
         })
         .then(response => response.json())
         .then(response => {
-            // console.log(response)
         })
         alert("You have succesfully checked out!")
         this.setState({
@@ -198,11 +204,17 @@ export default class AccountPage extends Component {
         .then(response => response.json())
         .then(response => {
             let orderList = response.order_items.filter(item => item.order_id === this.props.user.current_order)
-            // console.log(orderList)
+            console.log(orderList)
             this.setState({
                 orderItems: orderList,
                 showModal: !this.state.showModal
             })
+        })
+    }
+
+    showPastOrders = () => {
+        this.setState({
+            showPastOrders: !this.state.showPastOrders
         })
     }
 
@@ -236,6 +248,12 @@ export default class AccountPage extends Component {
         })
     }
 
+    renderUserPastOrders = () => {
+        if(this.state.userPastOrders !== null){
+           return this.state.userPastOrders.map(order => <PastOrderItem order={order} key={order.id}/>).reverse()
+        }
+    }
+
 
     render() {
         const user = this.props.user
@@ -251,6 +269,7 @@ export default class AccountPage extends Component {
               }
             }
           }
+         
         return (
             <motion.div variants={container} initial='hidden' animate='show' className="accountPage">
                 <div className='accountPageContainer'>
@@ -261,7 +280,7 @@ export default class AccountPage extends Component {
                         <button onClick={this.handleModalShow}>Your Cart <FontAwesomeIcon icon={faShoppingCart}/></button>
                         <button onClick={this.handleFavoritesClick}>Favorites <FontAwesomeIcon icon={faHeart}/></button>
                         <button >Change Email <FontAwesomeIcon icon={faEnvelope}/></button>
-                        <button >Past Orders <FontAwesomeIcon icon={faArchive}/></button>
+                        <button onClick={this.showPastOrders}>Past Orders <FontAwesomeIcon icon={faArchive}/></button>
                         </div>
                     </div>
                     <motion.div  variants={container} initial="hidden" animate='show' className='accountPageRight'>
@@ -277,12 +296,25 @@ export default class AccountPage extends Component {
                 </Modal.Header>
                 <Modal.Body>
                     {this.renderCartItems()}
-                    
                 </Modal.Body>
                 <Modal.Footer className='cartModalFooter'>
                 <p>Order Total: <b>$0.00</b></p>
                 <Button variant='primary' size='sm' onClick={this.clearCart}><b>Checkout</b></Button>
                 <Button variant="secondary"  size='sm' onClick={this.handleModalShow}>
+                    Close
+                </Button>
+                </Modal.Footer>
+            </Modal>
+            <Modal show={this.state.showPastOrders} onHide={this.showPastOrders} className="orderModal">
+                <Modal.Header>
+                <Modal.Title>Previous Orders</Modal.Title>
+            
+                </Modal.Header>
+                <Modal.Body>
+                    {this.renderUserPastOrders()}
+                </Modal.Body>
+                <Modal.Footer className='cartModalFooter'>
+                <Button variant="secondary"  size='sm' onClick={this.showPastOrders}>
                     Close
                 </Button>
                 </Modal.Footer>

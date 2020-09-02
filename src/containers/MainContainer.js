@@ -8,7 +8,6 @@ import AccountPage from '../components/AccountPage'
 import CreateYourOwn from './CreateYourOwn'
 import BeverageContainer from './BeverageContainer'
 import LandingPage from '../components/LandingPage'
-import { CSSTransition, TransitionGroup } from 'react-transition-group'
 
 const baseAPI = 'http://localhost:3000'
 

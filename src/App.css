@@ -103,7 +103,7 @@
   padding-bottom: 1%;
   padding-right: 1%;
   margin-top: 1%;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Lato', sans-serif;
 }
 
 .navBar a:hover {
@@ -134,13 +134,13 @@
 
 .loginModalBody {
   margin: auto;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Lato', sans-serif;
 }
 
 .loginModalBody p {
   margin-top: 5%;
   margin-bottom: -2%;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Lato', sans-serif;
 }
 
 /* SIGNUP FORM / SIGNUP */
@@ -161,17 +161,17 @@
 .createBeveragePage h2 {
   margin-top: 1%;
   text-shadow: 0px 0px 3px #ffffff;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Lato', sans-serif;
 }
 
 .beverageCreateForm {
   padding-bottom: 5%;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Lato', sans-serif;
 }
 
 .beverageCreateForm p {
   font-size: medium;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Lato', sans-serif;
 }
 
 .beverageCreateForm input {
@@ -183,7 +183,7 @@
 .beverageCreateForm button {
   display: block;
   margin: auto;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Lato', sans-serif;
 }
 
 .beverageCreateForm button:last-of-type {
@@ -198,25 +198,25 @@
   border: rgb(255, 255, 255);
   border-width: 1px;
   border-style: solid;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Lato', sans-serif;
 }
 
 .createBevFormModal {
   margin: auto;
   text-align: center;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Lato', sans-serif;
   
 }
 
 .createBevFormModal form {
   margin: auto;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Lato', sans-serif;
 }
 
 /* BEVERAGE INSTRUCTIONS / CREATE YOUR OWN */
 
 .beverageInstructionsPage {
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Lato', sans-serif;
 }
 
 .beverageCardsList {
@@ -236,7 +236,7 @@
   background-color: rgba(235, 235, 235, .6);
   border-radius: 5px;
   transition: 0.3s;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Lato', sans-serif;
 }
 
 .instructionsCard p:last-of-type {
@@ -352,7 +352,7 @@
 
 .beveragesPage {
   margin: auto;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Lato', sans-serif;
 }
 
 .beveragesList {
@@ -432,14 +432,14 @@
   overflow-y: auto;
   padding: 30px;
   margin-bottom: 2%;
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Lato', sans-serif;
   
 }
 
 .beverageCard h2 {
   font-size: x-large;
   margin-bottom: 4%;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Lato', sans-serif;
 }
 
 .beverageCard:hover {
@@ -464,11 +464,11 @@
 width: 60%;
 display: flex;
 flex-direction: column;
-font-family: 'Montserrat', sans-serif;
+font-family: 'Lato', sans-serif;
 }
 
 .bevCardRight button:first-of-type {
-  margin-top: 5%;
+  margin-top: 13%;
   /* background-color: rgba(255, 255, 255, 0.602);
   padding: 10px;
   border-radius: 50px;
@@ -480,8 +480,7 @@ font-family: 'Montserrat', sans-serif;
 .bevCardRight button {
   width: 60%;
   margin: auto;
-  margin-top: 3%;
-  padding: 10px;
+  padding: 7px;
   border-radius: 50px;
   border: none;
   color: white;
@@ -521,7 +520,7 @@ font-family: 'Montserrat', sans-serif;
 /* ACCOUNT PAGE / USER PROFILE */
 
 .accountPage {
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Lato', sans-serif;
 }
 
 .accountPage h2 {
@@ -540,7 +539,7 @@ font-family: 'Montserrat', sans-serif;
   overflow-y: scroll;
   background-color: rgba(235, 235, 235, .5);
   box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.671);;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Lato', sans-serif;
 }
 
 .accountPageLeft {
@@ -558,7 +557,7 @@ margin-right: -15%;
   border-radius: 5px;
   background-color: rgba(255, 255, 255, 0.45);
   box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.671);
-  font-family: 'Montserrat' sans-serif;
+  font-family: 'Lato', sans-serif;
 }
 
 .accountPageLeft button {
@@ -588,7 +587,7 @@ margin-right: -15%;
 
 .accountDetails h3 {
   margin-top: -10%;
-  font-family: 'Montserrat' sans-serif;
+  font-family: 'Lato', sans-serif;
 }
 
 .accountPageRight {
@@ -601,7 +600,7 @@ margin-right: -15%;
   display: flex;
   flex-direction: column;
   overflow-y: scroll;
-  font-family: 'Montserrat' sans-serif;
+  font-family: 'Lato', sans-serif;
 }
 
 .accountPageRight h3 {
@@ -612,7 +611,7 @@ margin-right: -15%;
 /* CART MODAL */
 
 .cartModal {
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Lato', sans-serif;
 }
 
 
@@ -622,18 +621,18 @@ margin-right: -15%;
   display: block;
   margin: auto;
   text-align: center;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Lato', sans-serif;;
 }
 
 .reviewModalForm form {
   margin: auto;
-  font-family: 'Montserrat', sans-serif;
+ font-family: 'Lato', sans-serif;
 }
 
 .reviewModalForm p {
   margin-bottom: -1%;
   padding-bottom: 2%;
-  font-family: 'Montserrat', sans-serif;
+ font-family: 'Lato', sans-serif;
 }
 
 .reviewModalForm input {
@@ -663,13 +662,13 @@ margin-right: -15%;
   padding: 2%;
   margin-bottom: 2%;
   overflow: auto;
-  font-family: 'Montserrat', sans-serif;
+ font-family: 'Lato', sans-serif;
 }
 
 .reviewCard p {
   margin-bottom: 3%;
   padding: 1%;
-  font-family: 'Montserrat', sans-serif;
+ font-family: 'Lato', sans-serif;
 }
 
 /* CART ITEM CARD */

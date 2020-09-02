@@ -37,9 +37,6 @@ export default class AccountPage extends Component {
         await new Promise(r => setTimeout(r, 500));
         this.getOrderItems()
         this.filterUserCart()
-        this.getCurrentOrderPrice()
-        
-       
     }
 
     // componentDidUpdate = (prevProps, prevState) => {

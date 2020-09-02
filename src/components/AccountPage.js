@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import Button from 'react-bootstrap/button'
-import '../App.css';
+import '../App.scss';
 import Beverage from './Beverage'
 import Modal from 'react-bootstrap/Modal'
 import CartItem from './CartItem'

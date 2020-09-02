@@ -101,10 +101,11 @@ export default class AccountPage extends Component {
     filterUserCart = () => {
         if(this.state.orders !== null){
             let userCart = this.state.orders.filter(order => order.user_id === this.props.user.id)
+            console.log(userCart[userCart.length-1].total_price)
             this.setState({
                 userCart: userCart[userCart.length-1],
                 userPastOrders: userCart,
-                // cartTotalPrice: userCart[userCart.length-1].total_price.toFixed(2)
+                // cartTotalPrice: userCart.total_price.toFixed(2)
             })
         }
     }
@@ -217,7 +218,7 @@ export default class AccountPage extends Component {
 
     renderCartItems = () => {
         if(this.state.orderItems !== null){
-            return this.state.orderItems.map(cartItem => <CartItem item={cartItem} removeFromCart={this.removeFromCart} key={cartItem.id}/>).reverse()
+            return this.state.orderItems.map(cartItem => <CartItem item={cartItem} removeFromCart={this.removeFromCart} orderId={this.props.user.current_order} key={cartItem.id}/>).reverse()
         } 
     }
 
@@ -266,7 +267,7 @@ export default class AccountPage extends Component {
               }
             }
           }
-         
+         console.log(user)
         return (
             <motion.div variants={container} initial='hidden' animate='show' className="accountPage">
                 <div className='accountPageContainer'>
@@ -295,7 +296,7 @@ export default class AccountPage extends Component {
                     {this.renderCartItems()}
                 </Modal.Body>
                 <Modal.Footer className='cartModalFooter'>
-                <p>Order Total: <b>$0.00</b></p>
+                <p>Order Total: <b>${this.state.userCart ? this.state.userCart.total_price.toFixed(2) : null}</b></p>
                 <Button variant='primary' size='sm' onClick={this.clearCart}><b>Checkout</b></Button>
                 <Button variant="secondary"  size='sm' onClick={this.handleModalShow}>
                     Close
@@ -305,7 +306,6 @@ export default class AccountPage extends Component {
             <Modal show={this.state.showPastOrders} onHide={this.showPastOrders} className="orderModal">
                 <Modal.Header>
                 <Modal.Title>Previous Orders</Modal.Title>
-            
                 </Modal.Header>
                 <Modal.Body>
                     {this.renderUserPastOrders()}

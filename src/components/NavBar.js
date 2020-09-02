@@ -12,7 +12,7 @@ export default function NavBar(props) {
                     {/* <li><a href='/shop'>Shop</a></li> */}
                     <li><a href='/createyourown'>create your own</a></li>
                     {!props.user? <li> <a href='/login'>login</a> </li> : <><li><a href='/profile'>my account</a></li>  <li> <a href='/login' onClick={props.logOut}>logout</a></li></>}
-                    {/* <FontAwesomeIcon icon={faShoppingCart}/> */}
+                    <FontAwesomeIcon icon={faShoppingCart}/>
                 </ul>
         </div>
     )

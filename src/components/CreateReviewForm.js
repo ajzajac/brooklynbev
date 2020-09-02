@@ -24,6 +24,7 @@ export default class CreateReviewForm extends Component {
                 rating: this.state.reviewRating,
                 user_id: this.state.user.id,
                 beverage_id: this.state.beverageId,
+                name: this.state.user.username
             })
         })
         .then(resp => resp.json())
@@ -44,6 +45,7 @@ export default class CreateReviewForm extends Component {
 
 
     render() {
+        console.log(this.state.user)
         return (
             <div className='reviewModalForm'>
                 <form onSubmit={this.submitCreateReview} className='reviewCreateForm'>

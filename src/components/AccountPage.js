@@ -104,7 +104,7 @@ export default class AccountPage extends Component {
             this.setState({
                 userCart: userCart[userCart.length-1],
                 userPastOrders: userCart,
-                cartTotalPrice: userCart[userCart.length-1].total_price.toFixed(2)
+                // cartTotalPrice: userCart[userCart.length-1].total_price.toFixed(2)
             })
         }
     }

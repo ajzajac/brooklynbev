@@ -70,7 +70,6 @@ export default class AccountPage extends Component {
         })
         .then(response => response.json())
         .then(response => {
-            // console.log(response.orders)
             this.setState({
                 orders: response.orders
             })
@@ -96,7 +95,6 @@ export default class AccountPage extends Component {
      filterUserCart = () => {
         if(this.state.orders !== null){
             let userCart = this.state.orders.filter(order => order.user_id === this.props.user.id)
-            console.log(userCart[userCart.length-1].total_price)
             this.setState({
                 userCart: userCart[userCart.length-1],
                 userPastOrders: userCart,

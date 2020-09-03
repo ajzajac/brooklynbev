@@ -8,10 +8,6 @@ export default class Login extends Component {
         showModal: true,
     }
 
-    // componentDidMount(){
-    //   this.isLoggedIn()
-    // }
-
     handleChange = (event) => {
         this.setState({
           [event.target.name]: event.target.value

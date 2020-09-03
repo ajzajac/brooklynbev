@@ -15,7 +15,7 @@ export default class Beverage extends Component {
         showModal: false,
         showReviews: false,
         favorite: false,
-        userCurrentOrderList: null,
+        addToCart: false,
     }
 
     componentDidMount(){
@@ -79,9 +79,9 @@ export default class Beverage extends Component {
         const bevName = this.props.beverage.name
         const bevFlavor = this.props.beverage.base_flavor
 
-            console.log(currentOrder)
         if (currentOrder === null) {
             const token = localStorage.token
+            this.props.addPrice()
             let config4 = {
                 method: "POST",
                 headers: {
@@ -99,10 +99,11 @@ export default class Beverage extends Component {
                 .then(response => response.json())
                 .then(response => {
                     console.log(response)
-                    this.props.fetchPrice()
+                    
                 }) 
         } else {
             const token = localStorage.token
+            this.props.addPrice()
                 let config3 = {
                     method: "POST",
                     headers: {
@@ -121,11 +122,7 @@ export default class Beverage extends Component {
                 fetch(baseAPI + '/order_items', config3)
                     .then(response => response.json())
                     .then(response => {
-                        console.log(this.state.response)
-                        this.props.fetchPrice()
-                        this.setState({
-                            userCurrentOrderList: response
-                        })
+                
                     }) 
                     alert("Beverage Has Been Added To Your Shopping Cart")
             }

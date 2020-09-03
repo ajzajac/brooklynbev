@@ -22,7 +22,6 @@ export default class BeverageContainer extends Component {
         this.getReviews()
         this.getOrders()
         new Promise(r => setTimeout(r, 350));
-        this.fetchOrderItems()
         this.filterUserCart()
     }
 
@@ -35,7 +34,6 @@ export default class BeverageContainer extends Component {
         })
         .then(response => response.json())
         .then(response => {
-            // console.log(response)
             this.setState({
                 beverageReviews: response
             })
@@ -51,7 +49,6 @@ export default class BeverageContainer extends Component {
         })
         .then(response => response.json())
         .then(response => {
-            // console.log(response.orders)
             this.setState({
                 orders: response.orders
             })
@@ -67,7 +64,6 @@ export default class BeverageContainer extends Component {
         })
         .then(response => response.json())
         .then(response => {
-            // console.log(response)
             this.setState({
                 allBeverages: response
             })
@@ -76,8 +72,15 @@ export default class BeverageContainer extends Component {
 
     renderBeverages = () => {
         if(this.props.beverages !== null){
-           return this.props.beverages.map(beverage => <Beverage beverage={beverage} reviews={this.state.beverageReviews} fetchPrice={this.filterUserCart} fetchOrderItems={this.fetchOrderItems} user={this.props.user} key={beverage.id}/>).reverse()
+           return this.props.beverages.map(beverage => <Beverage beverage={beverage} addPrice={this.addPriceOptimistically} reviews={this.state.beverageReviews} fetchPrice={this.filterUserCart} fetchOrderItems={this.fetchOrderItems} user={this.props.user} key={beverage.id}/>).reverse()
         }
+    }
+
+    addPriceOptimistically = () => {
+        let itemPrice = '4.99'
+        this.setState({
+            cartTotalPrice:  (parseFloat(this.state.cartTotalPrice) + parseFloat(itemPrice)).toFixed(2)
+        })
     }
 
     showModal = () => {
@@ -92,23 +95,6 @@ export default class BeverageContainer extends Component {
         })
     }
 
-    fetchOrderItems = () => {
-        fetch(baseAPI + '/order_items', {
-            headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json',
-              },
-        })
-        .then(response => response.json())
-        .then(response => {
-            let orderList = response.order_items.filter(item => item.order_id === this.props.user.current_order)
-            console.log(orderList)
-            this.setState({
-                orderItems: orderList,
-            })
-        })
-    }
-
     filterUserCart = () => {
         if(this.state.orders !== null){
             let userCart = this.state.orders.filter(order => order.user_id === this.props.user.id)
@@ -120,7 +106,6 @@ export default class BeverageContainer extends Component {
             })
         }
     }
-
 
     render() {
         const container = {

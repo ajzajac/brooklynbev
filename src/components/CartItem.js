@@ -12,6 +12,8 @@ export default class CartItem extends Component {
 
     remove = () => {
         const token = localStorage.token
+       this.props.decreasePrice()
+
         fetch(baseAPI + `/order_items/${this.props.item.id}`, {
             method: 'DELETE',
             headers: {
@@ -25,8 +27,8 @@ export default class CartItem extends Component {
         })
         .then(response => response.json())
         .then(response => {
+            this.props.getOrders()
             this.props.fetchOrderItems()
-            this.props.fetchPrice()
         })
     }
 

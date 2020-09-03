@@ -27,7 +27,6 @@ export default class AccountPage extends Component {
         showPastOrders: false,
         userPastOrders: null,
         cartShow: null,
-        currentTotal: null,
     }
 
     async componentDidMount(){
@@ -94,24 +93,7 @@ export default class AccountPage extends Component {
         })
     }
 
-    fetchOrderItems = () => {
-        fetch(baseAPI + '/order_items', {
-            headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json',
-              },
-        })
-        .then(response => response.json())
-        .then(response => {
-            let orderList = response.order_items.filter(item => item.order_id === this.props.user.current_order)
-            console.log(orderList)
-            this.setState({
-                orderItems: orderList,
-            })
-        })
-    }
-
-    filterUserCart = () => {
+     filterUserCart = () => {
         if(this.state.orders !== null){
             let userCart = this.state.orders.filter(order => order.user_id === this.props.user.id)
             console.log(userCart[userCart.length-1].total_price)
@@ -121,6 +103,20 @@ export default class AccountPage extends Component {
                 cartTotalPrice: userCart[userCart.length-1].total_price.toFixed(2)
             })
         }
+    }
+
+    addPriceOptimistically = () => {
+        let itemPrice = '4.99'
+        this.setState({
+            cartTotalPrice:  (parseFloat(this.state.cartTotalPrice) + parseFloat(itemPrice)).toFixed(2)
+        })
+    }
+
+    decreasePriceOptimistically = () => {
+        let itemPrice = '4.99'
+        this.setState({
+            cartTotalPrice: (parseFloat(this.state.cartTotalPrice) - parseFloat(itemPrice)).toFixed(2)
+        })
     }
 
     getCurrentPrice = () => {
@@ -172,7 +168,7 @@ export default class AccountPage extends Component {
     renderUserBeverages = () => {
         if(this.props.user && this.state.allBeverages !== null){
             const beverages = this.filterUserBeverages()
-           return beverages.map(beverage => <Beverage fetchPrice={this.filterUserCart} beverage={beverage} user={this.props.user} reviews={this.state.beverageReviews} key={beverage.id}/>).reverse()
+           return beverages.map(beverage => <Beverage fetchPrice={this.getCurrentPrice} addPrice={this.addPriceOptimistically} beverage={beverage} user={this.props.user} reviews={this.state.beverageReviews} key={beverage.id}/>).reverse()
         }
     }
 
@@ -206,7 +202,7 @@ export default class AccountPage extends Component {
     renderFavorites = () => {
         if(this.props.user && this.state.favorites !== null){
             const beverages = this.filterUserFavorites()
-           return beverages.map(beverage => <Beverage fetchPrice={this.filterUserCart} beverage={beverage} user={this.props.user} reviews={this.state.beverageReviews} key={beverage.id}/>)
+           return beverages.map(beverage => <Beverage fetchPrice={this.getCurrentPrice} beverage={beverage} addPrice={this.addPriceOptimistically} user={this.props.user} reviews={this.state.beverageReviews} key={beverage.id}/>)
         }
     }
 
@@ -221,6 +217,7 @@ export default class AccountPage extends Component {
         .then(response => {
             let orderList = response.order_items.filter(item => item.order_id === this.props.user.current_order)
             console.log(orderList)
+            console.log(response)
             this.setState({
                 orderItems: orderList,
                 showModal: !this.state.showModal
@@ -253,34 +250,9 @@ export default class AccountPage extends Component {
 
     renderCartItems = () => {
         if(this.state.orderItems !== null){
-            return this.state.orderItems.map(cartItem => <CartItem item={cartItem} fetchPrice={this.getCurrentPrice} fetchOrderItems={this.fetchOrderItems} removeFromCart={this.removeFromCart} orderId={this.props.user.current_order} key={cartItem.id}/>).reverse()
+            return this.state.orderItems.map(cartItem => <CartItem item={cartItem} decreasePrice={this.decreasePriceOptimistically} fetchPrice={this.getCurrentPrice} getOrders={this.getOrders} fetchOrderItems={this.fetchOrderItems} removeFromCart={this.removeFromCart} orderId={this.props.user.current_order} key={cartItem.id}/>).reverse()
         } 
     }
-
-    removeItem = () => {
-        let newItems = this.state.orderItems.filter(order => order.id !== this.props.item.id)
-        this.setState({
-            orderItems: newItems
-        })
-    }
-
-    removeFromCart = () => {
-        const token = localStorage.token
-        fetch(baseAPI + `/order_items/${this.props.item.id}`, {
-            method: 'DELETE',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': token,
-                'Accept': 'application/json',
-              },
-        })
-        .then(response => response.json())
-        .then(response => {
-            this.filterUserCart()
-        })
-    }
-
-
 
     renderUserPastOrders = () => {
         if(this.state.userPastOrders !== null){
@@ -303,7 +275,7 @@ export default class AccountPage extends Component {
               }
             }
           }
-         console.log(this.state.cartTotalPrice)
+
         return (
             <motion.div variants={container} initial='hidden' animate='show' className="accountPage">
                 <div className='accountPageContainer'>
@@ -312,7 +284,7 @@ export default class AccountPage extends Component {
                         <h3><b>{user ? this.props.user.username : null}</b></h3>
                         <p>{user ? this.props.user.email : null}</p>
                         <button onClick={this.handleModalShow}>Your Cart <FontAwesomeIcon icon={faShoppingCart}/></button>
-                        <button onClick={this.handleFavoritesClick}>Favorites <FontAwesomeIcon icon={faHeart}/></button>
+                        <button onClick={this.handleFavoritesClick}>{this.state.showFavorites ? "Beverages" : "Favorites"} <FontAwesomeIcon icon={faHeart}/></button>
                         <button >Change Email <FontAwesomeIcon icon={faEnvelope}/></button>
                         <button onClick={this.showPastOrders}>Past Orders <FontAwesomeIcon icon={faArchive}/></button>
                         </div>

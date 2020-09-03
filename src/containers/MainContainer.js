@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import Beverages from '../components/Beverages'
 import { Route, Switch } from 'react-router-dom'
 import Login from './Login'
 import Signup from './Signup'

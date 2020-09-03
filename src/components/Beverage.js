@@ -99,9 +99,7 @@ export default class Beverage extends Component {
                 .then(response => response.json())
                 .then(response => {
                     console.log(response)
-                    this.setState({
-
-                    })
+                    this.props.fetchPrice()
                 }) 
         } else {
             const token = localStorage.token
@@ -123,7 +121,8 @@ export default class Beverage extends Component {
                 fetch(baseAPI + '/order_items', config3)
                     .then(response => response.json())
                     .then(response => {
-                        console.log(this.state.userCurrentOrderList)
+                        console.log(this.state.response)
+                        this.props.fetchPrice()
                         this.setState({
                             userCurrentOrderList: response
                         })

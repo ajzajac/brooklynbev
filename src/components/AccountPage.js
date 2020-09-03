@@ -26,6 +26,8 @@ export default class AccountPage extends Component {
         cartTotalPrice: null,
         showPastOrders: false,
         userPastOrders: null,
+        cartShow: null,
+        currentTotal: null,
     }
 
     async componentDidMount(){
@@ -34,16 +36,10 @@ export default class AccountPage extends Component {
         this.getFavorites()
         this.getOrders()
         this.isVisible() 
-        await new Promise(r => setTimeout(r, 500));
+        await new Promise(r => setTimeout(r, 350));
         this.getOrderItems()
         this.filterUserCart()
     }
-
-    // componentDidUpdate = (prevProps, prevState) => {
-    //     if(prevState.orderItems !==  null){
-    //         this.getOrderItems()
-    //     }
-    // }
 
     isVisible = () => {
         this.setState({
@@ -98,6 +94,23 @@ export default class AccountPage extends Component {
         })
     }
 
+    fetchOrderItems = () => {
+        fetch(baseAPI + '/order_items', {
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+              },
+        })
+        .then(response => response.json())
+        .then(response => {
+            let orderList = response.order_items.filter(item => item.order_id === this.props.user.current_order)
+            console.log(orderList)
+            this.setState({
+                orderItems: orderList,
+            })
+        })
+    }
+
     filterUserCart = () => {
         if(this.state.orders !== null){
             let userCart = this.state.orders.filter(order => order.user_id === this.props.user.id)
@@ -105,9 +118,14 @@ export default class AccountPage extends Component {
             this.setState({
                 userCart: userCart[userCart.length-1],
                 userPastOrders: userCart,
-                // cartTotalPrice: userCart.total_price.toFixed(2)
+                cartTotalPrice: userCart[userCart.length-1].total_price.toFixed(2)
             })
         }
+    }
+
+    getCurrentPrice = () => {
+        this.getOrders()
+        this.filterUserCart()
     }
 
     clearCart = () => {
@@ -154,7 +172,7 @@ export default class AccountPage extends Component {
     renderUserBeverages = () => {
         if(this.props.user && this.state.allBeverages !== null){
             const beverages = this.filterUserBeverages()
-           return beverages.map(beverage => <Beverage beverage={beverage} user={this.props.user} reviews={this.state.beverageReviews} key={beverage.id}/>).reverse()
+           return beverages.map(beverage => <Beverage fetchPrice={this.filterUserCart} beverage={beverage} user={this.props.user} reviews={this.state.beverageReviews} key={beverage.id}/>).reverse()
         }
     }
 
@@ -188,7 +206,7 @@ export default class AccountPage extends Component {
     renderFavorites = () => {
         if(this.props.user && this.state.favorites !== null){
             const beverages = this.filterUserFavorites()
-           return beverages.map(beverage => <Beverage beverage={beverage} user={this.props.user} reviews={this.state.beverageReviews} key={beverage.id}/>)
+           return beverages.map(beverage => <Beverage fetchPrice={this.filterUserCart} beverage={beverage} user={this.props.user} reviews={this.state.beverageReviews} key={beverage.id}/>)
         }
     }
 
@@ -210,6 +228,23 @@ export default class AccountPage extends Component {
         })
     }
 
+    fetchOrderItems = () => {
+        fetch(baseAPI + '/order_items', {
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+              },
+        })
+        .then(response => response.json())
+        .then(response => {
+            let orderList = response.order_items.filter(item => item.order_id === this.props.user.current_order)
+            console.log(orderList)
+            this.setState({
+                orderItems: orderList,
+            })
+        })
+    }
+
     showPastOrders = () => {
         this.setState({
             showPastOrders: !this.state.showPastOrders
@@ -218,7 +253,7 @@ export default class AccountPage extends Component {
 
     renderCartItems = () => {
         if(this.state.orderItems !== null){
-            return this.state.orderItems.map(cartItem => <CartItem item={cartItem} removeFromCart={this.removeFromCart} orderId={this.props.user.current_order} key={cartItem.id}/>).reverse()
+            return this.state.orderItems.map(cartItem => <CartItem item={cartItem} fetchPrice={this.getCurrentPrice} fetchOrderItems={this.fetchOrderItems} removeFromCart={this.removeFromCart} orderId={this.props.user.current_order} key={cartItem.id}/>).reverse()
         } 
     }
 
@@ -241,10 +276,11 @@ export default class AccountPage extends Component {
         })
         .then(response => response.json())
         .then(response => {
-            // console.log(response)
-            
+            this.filterUserCart()
         })
     }
+
+
 
     renderUserPastOrders = () => {
         if(this.state.userPastOrders !== null){
@@ -267,7 +303,7 @@ export default class AccountPage extends Component {
               }
             }
           }
-         console.log(user)
+         console.log(this.state.cartTotalPrice)
         return (
             <motion.div variants={container} initial='hidden' animate='show' className="accountPage">
                 <div className='accountPageContainer'>
@@ -296,7 +332,7 @@ export default class AccountPage extends Component {
                     {this.renderCartItems()}
                 </Modal.Body>
                 <Modal.Footer className='cartModalFooter'>
-                <p>Order Total: <b>${this.state.userCart ? this.state.userCart.total_price.toFixed(2) : null}</b></p>
+                <p>Order Total: <b>${this.state.cartTotalPrice ? this.state.cartTotalPrice : '0.00'}</b></p>
                 <Button variant='primary' size='sm' onClick={this.clearCart}><b>Checkout</b></Button>
                 <Button variant="secondary"  size='sm' onClick={this.handleModalShow}>
                     Close

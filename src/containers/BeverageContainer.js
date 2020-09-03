@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import Beverage from '../components/Beverage'
-import Carousel from 'react-bootstrap/Carousel'
 import ReadReviewModal from './ReadReviewModalList'
 import { motion } from 'framer-motion'
 
@@ -12,10 +11,19 @@ export default class BeverageContainer extends Component {
         allBeverages: null,
         beverageReviews: null,
         modalShow: false,
+        orderItems: null,
+        userCart: null,
+        userPastOrders: null,
+        cartTotalPrice: null,
+        orders: null,
     }
 
     componentDidMount(){
         this.getReviews()
+        this.getOrders()
+        new Promise(r => setTimeout(r, 350));
+        this.fetchOrderItems()
+        this.filterUserCart()
     }
 
     getReviews = () => {
@@ -30,6 +38,22 @@ export default class BeverageContainer extends Component {
             // console.log(response)
             this.setState({
                 beverageReviews: response
+            })
+        })
+    }
+
+    getOrders = () => {
+        fetch(baseAPI + '/orders', {
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+              },
+        })
+        .then(response => response.json())
+        .then(response => {
+            // console.log(response.orders)
+            this.setState({
+                orders: response.orders
             })
         })
     }
@@ -52,7 +76,7 @@ export default class BeverageContainer extends Component {
 
     renderBeverages = () => {
         if(this.props.beverages !== null){
-           return this.props.beverages.map(beverage => <Beverage beverage={beverage} reviews={this.state.beverageReviews} user={this.props.user} key={beverage.id}/>).reverse()
+           return this.props.beverages.map(beverage => <Beverage beverage={beverage} reviews={this.state.beverageReviews} fetchPrice={this.filterUserCart} fetchOrderItems={this.fetchOrderItems} user={this.props.user} key={beverage.id}/>).reverse()
         }
     }
 
@@ -66,6 +90,35 @@ export default class BeverageContainer extends Component {
         this.setState({
             modalShow: false
         })
+    }
+
+    fetchOrderItems = () => {
+        fetch(baseAPI + '/order_items', {
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+              },
+        })
+        .then(response => response.json())
+        .then(response => {
+            let orderList = response.order_items.filter(item => item.order_id === this.props.user.current_order)
+            console.log(orderList)
+            this.setState({
+                orderItems: orderList,
+            })
+        })
+    }
+
+    filterUserCart = () => {
+        if(this.state.orders !== null){
+            let userCart = this.state.orders.filter(order => order.user_id === this.props.user.id)
+            console.log(userCart[userCart.length-1].total_price)
+            this.setState({
+                userCart: userCart[userCart.length-1],
+                userPastOrders: userCart,
+                cartTotalPrice: userCart[userCart.length-1].total_price.toFixed(2)
+            })
+        }
     }
 
 

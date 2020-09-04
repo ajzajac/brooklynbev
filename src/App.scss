@@ -466,6 +466,7 @@ body {
   width: 100%;
   text-align: right;
   padding-top: 1%;
+  margin-bottom: 1%;
   top: 0;
   background-color: rgba(255, 255, 255, 0);
 }
@@ -1179,4 +1180,20 @@ margin-right: auto;
   margin: auto;
   margin-bottom: 5%;
   width: 90%;
+}
+
+// ALERTS
+
+.alert {
+  opacity: .7;
+  z-index: 2;
+  font-size: large;
+  margin-top: 1%;
+  color: black;
+  width: 80%;
+  margin: auto;
+  font-weight: bold;
+  letter-spacing: 2px;
+  font-family: 'Lato', sans-serif;
+  background-color: rgba(255, 255, 255, 0.507);
 }

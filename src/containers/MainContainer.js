@@ -7,6 +7,7 @@ import AccountPage from '../components/AccountPage'
 import CreateYourOwn from './CreateYourOwn'
 import BeverageContainer from './BeverageContainer'
 import LandingPage from '../components/LandingPage'
+import { Alert } from 'reactstrap'
 
 const baseAPI = 'http://localhost:3000'
 
@@ -19,6 +20,9 @@ export default class MainContainer extends Component {
         recommendedBeverages: null,
         userBeverages: null,
         beverageReviews: null,
+        visibleFavorite: false,
+        visibleCart: false,
+        visibleCreated: false,
     }
     
     async componentDidMount() {
@@ -88,15 +92,6 @@ export default class MainContainer extends Component {
         }
      }
 
-    // getRecommendedBeverages = () => {
-    //     if(this.state.allBeverages !== null){
-    //         var recommendedBeverages = this.state.allBeverages[Math.floor(Math.random() * this.state.allBeverages.length - 1)];
-    //         this.setState({
-    //             recommendedBeverages: recommendedBeverages
-    //         })
-    //     }
-    // }
-
     getReviews = () => {
         fetch(baseAPI + '/reviews', {
             headers: {
@@ -112,18 +107,44 @@ export default class MainContainer extends Component {
         })
     }
 
+    showAlert = () => {
+        this.setState({visibleFavorite:true},()=>{
+            window.setTimeout(()=>{
+              this.setState({visibleFavorite:false})
+            },3000)
+          });
+    }
+
+    showCartAlert = () => {
+        this.setState({visibleCart:true},()=>{
+            window.setTimeout(()=>{
+              this.setState({visibleCart:false})
+            },3000)
+          });
+    }
+
+    showCreatedAlert = () => {
+        this.setState({visibleCreated:true},()=>{
+            window.setTimeout(()=>{
+              this.setState({visibleCreated:false})
+            },3000)
+          });
+    }
 
     render() { 
         return (
             <div>
                  <NavBar user={this.state.currentUser} isLoggedIn={this.state.isLoggedIn} logOut={this.logOut}/>
+                 <Alert color='light' isOpen={this.state.visibleFavorite} className='alert'><p>Added beverage to your Favorites!</p></Alert>
+                 <Alert color='light' isOpen={this.state.visibleCart} className='alert'><p>Added beverage to your Cart!</p></Alert>
+                 <Alert color='light' isOpen={this.state.visibleCreated} className='alert'><p>Your beverage has been created and you can see it in your account page!</p></Alert>
                         <Switch>
                             <Route exact path='/' render={(routerProps) => <LandingPage {...routerProps} user={this.state.currentUser}/>} />
                             <Route exact path='/login' render={(routerProps) => <Login setUser={this.setUser} user={this.state.currentUser} {...routerProps}/>} />
                             <Route exact path='/signup' render={(routerProps) => <Signup setUser={this.setUser} user={this.state.currentUser} {...routerProps} />} />
-                            <Route exact path='/beverages' render={(routerProps) => <BeverageContainer recommendedBeverages={this.state.recommendedBeverages} beverages={this.state.allBeverages} user={this.state.currentUser} {...routerProps} />}/>
-                            <Route exact path='/profile' render={(routerProps) => <AccountPage user={this.state.currentUser} allBeverages={this.state.allBeverages} reviews={this.state.beverageReviews} isLoggedIn={this.state.isLoggedIn} {...routerProps} />}/>
-                            <Route exact path='/createyourown' render={(routerProps) => <CreateYourOwn user={this.state.currentUser} {...routerProps} />}/>
+                            <Route exact path='/beverages' render={(routerProps) => <BeverageContainer showCartAlert={this.showCartAlert} recommendedBeverages={this.state.recommendedBeverages} showAlert={this.showAlert} beverages={this.state.allBeverages} user={this.state.currentUser} {...routerProps} />}/>
+                            <Route exact path='/profile' render={(routerProps) => <AccountPage user={this.state.currentUser} showCartAlert={this.showCartAlert} allBeverages={this.state.allBeverages} showAlert={this.showAlert} reviews={this.state.beverageReviews} isLoggedIn={this.state.isLoggedIn} {...routerProps} />}/>
+                            <Route exact path='/createyourown' render={(routerProps) => <CreateYourOwn user={this.state.currentUser} showCreatedAlert={this.showCreatedAlert} {...routerProps} />}/>
                         </Switch>
             </div>
         )

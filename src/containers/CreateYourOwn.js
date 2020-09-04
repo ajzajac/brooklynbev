@@ -38,7 +38,7 @@ export default class CreateYourOwn extends Component {
             <div className='createBeveragePage'>
                 <h2>How It Works</h2>
                   {this.state.modalShow ? 
-                  <div><CreateBevModal show={this.state.modalShow} user={this.props.user} onHide={() => this.closeModal()}/> </div> 
+                  <div><CreateBevModal show={this.state.modalShow} user={this.props.user} showCreatedAlert={this.props.showCreatedAlert} onHide={() => this.closeModal()}/> </div> 
                   : 
                   <BeverageInstructions show={this.state.modalShow} showModal={this.showModal} onHide={() => this.closeModal()}/> }
             </div>

@@ -72,7 +72,7 @@ export default class BeverageContainer extends Component {
 
     renderBeverages = () => {
         if(this.props.beverages !== null){
-           return this.props.beverages.map(beverage => <Beverage beverage={beverage} addPrice={this.addPriceOptimistically} reviews={this.state.beverageReviews} fetchPrice={this.filterUserCart} fetchOrderItems={this.fetchOrderItems} user={this.props.user} key={beverage.id}/>).reverse()
+           return this.props.beverages.map(beverage => <Beverage beverage={beverage} showCartAlert={this.props.showCartAlert} addPrice={this.addPriceOptimistically} showAlert={this.props.showAlert} reviews={this.state.beverageReviews} fetchPrice={this.filterUserCart} fetchOrderItems={this.fetchOrderItems} user={this.props.user} key={beverage.id}/>).reverse()
         }
     }
 

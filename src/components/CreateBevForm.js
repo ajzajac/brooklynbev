@@ -35,7 +35,9 @@ export default class CreateBevForm extends Component {
             if(resp.errors){
                 alert(resp.errors)
             } else {
-                window.location.href='/beverages'
+                this.props.showCreatedAlert()
+                window.location.href='/profile'
+                
             }  
         })
     }

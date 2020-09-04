@@ -16,6 +16,7 @@ export default class Beverage extends Component {
         showReviews: false,
         favorite: false,
         addToCart: false,
+        visible: false,
     }
 
     componentDidMount(){
@@ -50,7 +51,6 @@ export default class Beverage extends Component {
     }
 
     handleFavorite = () => {
-        
         fetch(baseAPI + '/favorites', {
             method: 'POST',
             headers: {
@@ -67,64 +67,64 @@ export default class Beverage extends Component {
             if(response.errors){
                 alert(response.errors)
             } else {
-                alert('Added beverage to favorites!')
+                this.props.showAlert()
             }
         })
         }
 
-    addToCart = () => {
-        const userId = this.props.user.id  
-        const currentOrder = this.props.user.current_order
-        const beverageId = this.props.beverage.id
-        const bevName = this.props.beverage.name
-        const bevFlavor = this.props.beverage.base_flavor
+        addToCart = () => {
+            const userId = this.props.user.id  
+            const currentOrder = this.props.user.current_order
+            const beverageId = this.props.beverage.id
+            const bevName = this.props.beverage.name
+            const bevFlavor = this.props.beverage.base_flavor
 
-        if (currentOrder === null) {
-            const token = localStorage.token
-            this.props.addPrice()
-            let config4 = {
-                method: "POST",
-                headers: {
-                    'Content-Type':'application/json',
-                    "Authorization": token,
-                    'Accept':'application/json'
-                },
-                body: JSON.stringify({
-                    user_id: userId,
-                    beverage_id: beverageId,
-                })
-            }
-            
-            fetch(baseAPI + '/orders/neworder', config4)
-                .then(response => response.json())
-                .then(response => {
-                    console.log(response)
-                    
-                }) 
-        } else {
-            const token = localStorage.token
-            this.props.addPrice()
-                let config3 = {
+            if (currentOrder === null) {
+                const token = localStorage.token
+                this.props.addPrice()
+                let config4 = {
                     method: "POST",
                     headers: {
-                    'Content-Type':'application/json',
-                    "Authorization": token,
-                    'Accept':'application/json'
+                        'Content-Type':'application/json',
+                        "Authorization": token,
+                        'Accept':'application/json'
                     },
                     body: JSON.stringify({
-                        order_id: currentOrder,
+                        user_id: userId,
                         beverage_id: beverageId,
-                        name: bevName,
-                        base_flavor: bevFlavor,
-                        })
+                    })
                 }
-
-                fetch(baseAPI + '/order_items', config3)
+                
+                fetch(baseAPI + '/orders/neworder', config4)
                     .then(response => response.json())
                     .then(response => {
-                
+                        console.log(response)
+                        this.props.showCartAlert()
                     }) 
-                    alert("Beverage Has Been Added To Your Shopping Cart")
+            } else {
+                const token = localStorage.token
+                this.props.addPrice()
+                    let config3 = {
+                        method: "POST",
+                        headers: {
+                        'Content-Type':'application/json',
+                        "Authorization": token,
+                        'Accept':'application/json'
+                        },
+                        body: JSON.stringify({
+                            order_id: currentOrder,
+                            beverage_id: beverageId,
+                            name: bevName,
+                            base_flavor: bevFlavor,
+                            })
+                    }
+
+                    fetch(baseAPI + '/order_items', config3)
+                        .then(response => response.json())
+                        .then(response => {
+                            this.props.showCartAlert()
+                        }) 
+                        
             }
         }
 
@@ -171,6 +171,7 @@ export default class Beverage extends Component {
                 </Button>
                 </Modal.Footer>
             </Modal>
+            
         </div>
     )
     }

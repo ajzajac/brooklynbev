@@ -166,7 +166,7 @@ export default class AccountPage extends Component {
     renderUserBeverages = () => {
         if(this.props.user && this.state.allBeverages !== null){
             const beverages = this.filterUserBeverages()
-           return beverages.map(beverage => <Beverage fetchPrice={this.getCurrentPrice} addPrice={this.addPriceOptimistically} beverage={beverage} user={this.props.user} reviews={this.state.beverageReviews} key={beverage.id}/>).reverse()
+           return beverages.map(beverage => <Beverage fetchPrice={this.getCurrentPrice} showCartAlert={this.props.showCartAlert} showAlert={this.props.showAlert} addPrice={this.addPriceOptimistically} beverage={beverage} user={this.props.user} reviews={this.state.beverageReviews} key={beverage.id}/>).reverse()
         }
     }
 
@@ -200,7 +200,7 @@ export default class AccountPage extends Component {
     renderFavorites = () => {
         if(this.props.user && this.state.favorites !== null){
             const beverages = this.filterUserFavorites()
-           return beverages.map(beverage => <Beverage fetchPrice={this.getCurrentPrice} beverage={beverage} addPrice={this.addPriceOptimistically} user={this.props.user} reviews={this.state.beverageReviews} key={beverage.id}/>)
+           return beverages.map(beverage => <Beverage fetchPrice={this.getCurrentPrice} beverage={beverage} showCartAlert={this.props.showCartAlert} showAlert={this.props.showAlert} addPrice={this.addPriceOptimistically} user={this.props.user} reviews={this.state.beverageReviews} key={beverage.id}/>)
         }
     }
 

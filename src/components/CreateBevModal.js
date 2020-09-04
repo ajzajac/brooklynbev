@@ -14,7 +14,7 @@ export default function CreateBevModal(props) {
         <b>Try out a Beverage Creation Here!</b>
         </Modal.Header>
         <Modal.Body>
-          <CreateBevForm {...props} user={props.user}/>
+          <CreateBevForm {...props} user={props.user} showCreatedAlert={props.showCreatedAlert}/>
         </Modal.Body>
         <Modal.Footer>
           <Button size='sm' variant='secondary' onClick={props.onHide} style={{ width: '20%', margin: 'auto', boxShadow: '0px 0px 1px black'}}>Go Back</Button>

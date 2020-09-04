@@ -35,7 +35,7 @@ export default class AccountPage extends Component {
         this.getFavorites()
         this.getOrders()
         this.isVisible() 
-        await new Promise(r => setTimeout(r, 350));
+        await new Promise(r => setTimeout(r, 300));
         this.getOrderItems()
         this.filterUserCart()
     }
